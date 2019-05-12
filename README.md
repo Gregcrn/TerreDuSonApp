@@ -29,8 +29,7 @@
 - [Settings Page](http://react-material-dashboard.devias.io/settings?ref=github-readme)
 
 ## Quick start
-
-- [Download from Github](https://github.com/devias-io/react-material-dashboard/archive/master.zip) or [Download from Devias](https://devias.io/products/material-react-dashboard) or clone the repo: `git clone https://github.com/devias-io/react-material-dashboard.git`
+Clone the repo: `git clone https://github.com/Gregcrn/TerreDuSonApp.git`
 
 - Install dependencies: `npm install` or `yarn`
 
