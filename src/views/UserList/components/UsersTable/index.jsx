@@ -112,8 +112,8 @@ class UsersTable extends Component {
                     />
                     Nom
                   </TableCell>
-                  <TableCell align="left">ID</TableCell>
-                  <TableCell align="left">Etat</TableCell>
+                  <TableCell align="left">Rôle</TableCell>
+                  <TableCell align="left">Activité/Comission</TableCell>
                   <TableCell align="left">Téléphone</TableCell>
                   <TableCell align="left">Date d'inscription</TableCell>
                 </TableRow>

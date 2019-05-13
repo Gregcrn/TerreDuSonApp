@@ -9,7 +9,6 @@ import Account from './views/Account';
 import Settings from './views/Settings';
 import SignUp from './views/SignUp';
 import SignIn from './views/SignIn';
-import UnderDevelopment from './views/UnderDevelopment';
 import NotFound from './views/NotFound';
 
 export default class Routes extends Component {
@@ -55,11 +54,6 @@ export default class Routes extends Component {
           component={SignIn}
           exact
           path="/sign-in"
-        />
-        <Route
-          component={UnderDevelopment}
-          exact
-          path="/under-development"
         />
         <Route
           component={NotFound}
