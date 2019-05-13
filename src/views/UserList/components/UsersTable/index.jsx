@@ -115,7 +115,7 @@ class UsersTable extends Component {
                   <TableCell align="left">ID</TableCell>
                   <TableCell align="left">Etat</TableCell>
                   <TableCell align="left">Téléphone</TableCell>
-                  <TableCell align="left">Registration date</TableCell>
+                  <TableCell align="left">Date d'inscription</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
