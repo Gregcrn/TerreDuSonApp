@@ -9,9 +9,8 @@ import { withStyles } from '@material-ui/core/styles';
 
 // Material components
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
-import AccessTimeOutlinedIcon from '@material-ui/icons/AccessTimeOutlined';
-import GetAppIcon from '@material-ui/icons/GetApp';
 
 // Shared components
 import Paper from 'components/Paper';
@@ -50,20 +49,13 @@ class ProductCard extends Component {
         </div>
         <Divider />
         <div className={classes.stats}>
-          <AccessTimeOutlinedIcon className={classes.updateIcon} />
-          <Typography
-            className={classes.updateText}
-            variant="body2"
+          <Button
+            className={classes.uploadButton}
+            color="primary"
+            variant="text"
           >
-            Updated 2hr ago
-          </Typography>
-          <GetAppIcon className={classes.downloadsIcon} />
-          <Typography
-            className={classes.downloadsText}
-            variant="body2"
-          >
-            {product.totalDownloads} Downloads
-          </Typography>
+            Voir catégorie
+          </Button>
         </div>
       </Paper>
     );

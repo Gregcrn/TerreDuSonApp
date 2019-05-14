@@ -1,10 +1,10 @@
 export default [
   {
     id: 'DEV738089',
-    title: 'Dropbox',
+    title: 'Alimentation',
     description:
       'Dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.',
-    imageUrl: '/images/products/product_1.png',
+    imageUrl: '/images/products/diet.svg',
     totalDownloads: '594',
     price: '10',
     status: 'published',
@@ -12,10 +12,10 @@ export default [
   },
   {
     id: 'DEV795381',
-    title: 'Medium Corporation',
+    title: 'Cuisine/Vaiselle',
     description:
       'Medium is an online publishing platform developed by Evan Williams, and launched in August 2012.',
-    imageUrl: '/images/products/product_2.png',
+    imageUrl: '/images/products/kitchen.svg',
     totalDownloads: '625',
     price: '27',
     status: 'archived',
@@ -23,10 +23,10 @@ export default [
   },
   {
     id: 'DEV774585',
-    title: 'Slack',
+    title: 'Hygiène et droguerie',
     description:
       'Slack is a cloud-based set of team collaboration tools and services, founded by Stewart Butterfield.',
-    imageUrl: '/images/products/product_3.png',
+    imageUrl: '/images/products/hand-wash.svg',
     totalDownloads: '857',
     price: '20',
     status: 'published',
@@ -34,10 +34,10 @@ export default [
   },
   {
     id: 'DEV654476',
-    title: 'Lyft',
+    title: 'Papeterie & Bureautique',
     description:
       'Lyft is an on-demand transportation company based in San Francisco, California.',
-    imageUrl: '/images/products/product_4.png',
+    imageUrl: '/images/products/stationery.svg',
     totalDownloads: '406',
     price: '28',
     status: 'draft',
@@ -45,10 +45,10 @@ export default [
   },
   {
     id: 'DEV958347',
-    title: 'GitHub',
+    title: 'Petit matériels',
     description:
       'GitHub is a web-based hosting service for version control of code using Git.',
-    imageUrl: '/images/products/product_5.png',
+    imageUrl: '/images/products/stock.svg',
     totalDownloads: '835',
     price: '32',
     status: 'published',
@@ -56,10 +56,32 @@ export default [
   },
   {
     id: 'DEV773559',
-    title: 'Squarespace',
+    title: 'Aménagements',
     description:
       'Squarespace provides software as a service for website building and hosting. Headquartered in NYC.',
-    imageUrl: '/images/products/product_6.png',
+    imageUrl: '/images/products/wooden.svg',
+    totalDownloads: '835',
+    price: '32',
+    status: 'published',
+    createdAt: '04/04/2019'
+  },
+  {
+    id: 'DEV773559',
+    title: 'Mobilier',
+    description:
+      'Squarespace provides software as a service for website building and hosting. Headquartered in NYC.',
+    imageUrl: '/images/products/furniture.svg',
+    totalDownloads: '835',
+    price: '32',
+    status: 'published',
+    createdAt: '04/04/2019'
+  },
+  {
+    id: 'DEV773559',
+    title: 'Plomberie',
+    description:
+      'Squarespace provides software as a service for website building and hosting. Headquartered in NYC.',
+    imageUrl: '/images/products/plumbing.svg',
     totalDownloads: '835',
     price: '32',
     status: 'published',

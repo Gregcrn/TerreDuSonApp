@@ -10,6 +10,11 @@ import { withStyles } from '@material-ui/core/styles';
 // Material components
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
 
 // Shared components
 import Portlet from 'components/Portlet';
@@ -21,6 +26,57 @@ import PortletFooter from 'components/PortletFooter';
 // Component styles
 import styles from './styles';
 
+function Transition(props) {
+  return <Slide 
+    direction="up"
+    {...props}
+  />;
+}
+
+// eslint-disable-next-line react/no-multi-comp
+class AlertDialogSlide extends React.Component {
+  state = {
+    open: false,
+  };
+
+  handleClickOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
+  render() {
+    return (
+      <div>
+        <Button
+          color="primary"
+          onClick={this.handleClickOpen}
+          variant="contained">
+          Sauvegarder
+        </Button>
+        <Dialog
+          aria-describedby="alert-dialog-slide-description"
+          aria-labelledby="alert-dialog-slide-title"
+          keepMounted
+          onClose={this.handleClose}
+          open={this.state.open}
+          TransitionComponent={Transition}
+        >
+          <DialogTitle id="alert-dialog-slide-title">
+            {'Modification enregistré'}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-slide-description">
+              Votre demande de modifiction à bien été prise en compte.
+            </DialogContentText>
+          </DialogContent>
+        </Dialog>
+      </div>
+    );
+  }
+}
 const states = [
   {
     value: 'alabama',
@@ -36,6 +92,7 @@ const states = [
   }
 ];
 
+// eslint-disable-next-line react/no-multi-comp
 class Account extends Component {
   state = {
     firstName: 'Theoma',
@@ -43,15 +100,8 @@ class Account extends Component {
     email: 'contact@dreamteam.com',
     phone: '0756742311',
     state: 'Alabama',
-    country: 'USA'
+    country: 'USA',
   };
-
-  handleChange = e => {
-    this.setState({
-      state: e.target.value
-    });
-  };
-
   render() {
     const { classes, className, ...rest } = this.props;
     const { firstName, lastName, phone, state, country, email } = this.state;
@@ -118,11 +168,10 @@ class Account extends Component {
                 onChange={this.handleChange}
                 required
                 select
-                SelectProps={{
-                  native: true
-                }}
+                SelectProps={{native: true}}
                 value={state}
-                variant="outlined">
+                variant="outlined"
+              >
                 {states.map(option => (
                   <option
                     key={option.value}
@@ -144,12 +193,7 @@ class Account extends Component {
           </form>
         </PortletContent>
         <PortletFooter className={classes.portletFooter}>
-          <Button
-            color="primary"
-            variant="contained"
-          >
-            Sauvegarder
-          </Button>
+          <AlertDialogSlide/>
         </PortletFooter>
       </Portlet>
     );

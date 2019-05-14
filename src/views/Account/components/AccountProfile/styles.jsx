@@ -18,6 +18,13 @@ export default theme => ({
     flexShrink: 0,
     flexGrow: 0
   },
+  svg: {
+    marginLeft: 'auto',
+    height: '90px',
+    width: '90px',
+    flexShrink: 0,
+    flexGrow: 0
+  },
   progressWrapper: {
     marginTop: theme.spacing.unit * 2
   },
@@ -30,6 +37,9 @@ export default theme => ({
     backgroundColor: theme.palette.common.neutral
   },
   uploadButton: {
-    marginRight: theme.spacing.unit * 2
+    marginRight: theme.spacing.unit * 2,
+  },
+  input: {
+    display: 'none'
   }
 });

@@ -57,5 +57,8 @@ export default theme => ({
   downloadsText: {
     marginLeft: theme.spacing.unit,
     color: theme.palette.text.secondary
+  },
+  uploadButton: {
+    margin: 'auto'
   }
 });

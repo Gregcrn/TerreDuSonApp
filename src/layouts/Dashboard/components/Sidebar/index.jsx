@@ -50,7 +50,7 @@ class Sidebar extends Component {
         </div>
         <Divider className={classes.logoDivider} />
         <div className={classes.profile}>
-          <Link to="/account">
+          <Link to="/profil">
             <Avatar
               className={classes.avatar}
               src="/images/avatars/avatar_1.png"

@@ -22,6 +22,13 @@ import PortletFooter from 'components/PortletFooter';
 import styles from './styles';
 
 class AccountProfile extends Component {
+  state = {
+    removePhoto: true,
+  };
+  removePhoto = () =>{
+    this.setState({ removePhoto: false })
+  }
+
   render() {
     const { classes, className, ...rest } = this.props;
 
@@ -37,10 +44,14 @@ class AccountProfile extends Component {
             <div className={classes.info}>
               <Typography variant="h2">Theoma Magreg</Typography>
             </div>
-            <Avatar
+            { this.state.removePhoto ? <Avatar
               className={classes.avatar}
               src="/images/avatars/avatar_1.png"
+            /> : <Avatar
+              className={classes.avatar}
+              src= "/images/avatars/user-default.svg"
             />
+            }
           </div>
           <div className={classes.progressWrapper}>
             <Typography variant="body1">Profil complété: 70%</Typography>
@@ -55,14 +66,25 @@ class AccountProfile extends Component {
           </div>
         </PortletContent>
         <PortletFooter>
-          <Button
-            className={classes.uploadButton}
-            color="primary"
-            variant="text"
-          >
+          <input
+            accept="image/*"
+            className={classes.input}
+            id="contained-button-file"
+            multiple
+            type="file"
+          />
+          <label htmlFor="contained-button-file">
+            <Button
+              className={classes.button}
+              color="primary"
+              component="span"
+            >
             Changer photo 
-          </Button>
-          <Button variant="text">Supprimer photo</Button>
+            </Button>
+          </label>
+          <Button
+            onClick={this.removePhoto}
+            variant="text">Supprimer photo</Button>
         </PortletFooter>
       </Portlet>
     );
