@@ -3,7 +3,7 @@ import orders from 'data/orders';
 import users from 'data/users';
 
 function lookupOrder(order) {
-  order.customer = users.find(user => user.id === order);
+  order.customer = users.find(user => user.id === order.customer);
 
   return order;
 }

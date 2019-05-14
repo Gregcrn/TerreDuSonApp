@@ -10,6 +10,7 @@ import Settings from './views/Settings';
 import SignUp from './views/SignUp';
 import SignIn from './views/SignIn';
 import NotFound from './views/NotFound';
+import SousCategorieList from './views/SousCategorieList'
 
 export default class Routes extends Component {
   render() {
@@ -59,6 +60,11 @@ export default class Routes extends Component {
           component={NotFound}
           exact
           path="/not-found"
+        />
+        <Route
+          component={SousCategorieList}
+          exact
+          path="/produits/alimentation"
         />
         <Redirect to="/not-found" />
       </Switch>

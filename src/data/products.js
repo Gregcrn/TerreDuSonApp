@@ -8,7 +8,33 @@ export default [
     totalDownloads: '594',
     price: '10',
     status: 'published',
-    createdAt: '27/03/2019'
+    createdAt: '27/03/2019',
+    souscategorie: [{
+      id: 'DEV7380912',
+      title: 'Boisson',
+      description:
+      'Toutes les boissons',
+      imageUrl: '/images/products/diet.svg',
+      createdAt: '27/03/2019',
+      products:[
+        {
+          designation:'Coca',
+          prix:2,
+          quantité:12,
+          fournisseur:'Carrefour'
+        },
+        {
+          designation:'Eau',
+          prix: 1,
+          quantité: 54,
+          fournisseur:'Lidl'
+        },
+        {
+          designation:'Perrier',
+          prix: 3,
+        }
+      ]
+    }]
   },
   {
     id: 'DEV795381',
@@ -52,7 +78,7 @@ export default [
     totalDownloads: '835',
     price: '32',
     status: 'published',
-    createdAt: '04/04/2019'
+    createdAt: '04/04/2019',
   },
   {
     id: 'DEV773559',

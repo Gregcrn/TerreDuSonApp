@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom'
 
 // Externals
 import PropTypes from 'prop-types';
@@ -49,13 +50,15 @@ class ProductCard extends Component {
         </div>
         <Divider />
         <div className={classes.stats}>
-          <Button
-            className={classes.uploadButton}
-            color="primary"
-            variant="text"
-          >
+          <NavLink to = '/produits/alimentation'>
+            <Button
+              className={classes.uploadButton}
+              color="primary"
+              variant="text"
+            >
             Voir catégorie
-          </Button>
+            </Button>
+          </NavLink>
         </div>
       </Paper>
     );

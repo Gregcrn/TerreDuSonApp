@@ -155,13 +155,15 @@ class ProductList extends Component {
           {this.renderProducts()}
         </PortletContent>
         <PortletFooter className={classes.portletFooter}>
-          <Button
-            color="primary"
-            size="small"
-            variant="text"
-          >
-            View all <ArrowRightIcon />
-          </Button>
+          <Link to = "/produits">
+            <Button
+              color="primary"
+              size="small"
+              variant="text"
+            >
+            Voir tout <ArrowRightIcon />
+            </Button>
+          </Link>
         </PortletFooter>
       </Portlet>
     );
