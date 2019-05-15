@@ -21,7 +21,20 @@ import DisplayMode from 'components/DisplayMode';
 // Component styles
 import styles from './styles';
 
+import AddUser from '../../../../utils/AddUser'
+
 class UsersToolbar extends Component {
+
+  async AddUser(){
+    let user = {
+      nom: "New2",
+      password: "123456",
+      email: "New2@test.com",
+      Role_utilisateur_id: 3
+    };
+    await AddUser(user); 
+  }
+
   render() {
     const { classes, className, selectedUsers } = this.props;
 
@@ -58,6 +71,7 @@ class UsersToolbar extends Component {
             color="primary"
             size="small"
             variant="outlined"
+            onClick = { this.AddUser }
           >
             Ajouter un utilisateur
           </Button>
