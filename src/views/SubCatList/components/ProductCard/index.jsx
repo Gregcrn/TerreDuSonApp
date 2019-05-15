@@ -52,7 +52,7 @@ class ProductCard extends Component {
         <div className={classes.stats}>
           <NavLink
             className={classes.navLink}
-            to = "/tableau-de-bord"
+            to = "/produits/alimentation/boulangerie"
           >
             <Button
               className={classes.uploadButton}

@@ -11,6 +11,7 @@ import SignUp from './views/SignUp';
 import SignIn from './views/SignIn';
 import NotFound from './views/NotFound';
 import SubCatList from './views/SubCatList'
+import ProductsList from './views/ProductsList';
 
 export default class Routes extends Component {
   render() {
@@ -57,14 +58,19 @@ export default class Routes extends Component {
           path="/sign-in"
         />
         <Route
-          component={NotFound}
-          exact
-          path="/not-found"
-        />
-        <Route
           component={SubCatList}
           exact
           path="/produits/alimentation"
+        />
+        <Route
+          component={ProductsList}
+          exact
+          path="/produits/alimentation/boulangerie"
+        />
+        <Route
+          component={NotFound}
+          exact
+          path="/not-found"
         />
         <Redirect to="/not-found" />
       </Switch>
