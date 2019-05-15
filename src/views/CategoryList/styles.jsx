@@ -3,13 +3,13 @@ export default theme => ({
     padding: theme.spacing.unit * 3
   },
   content: {
-    marginTop: theme.spacing.unit * 2
+    marginTop: theme.spacing.unit * 5
   },
   progressWrapper: {
     paddingTop: '48px',
     paddingBottom: '24px',
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'flex-end'
   },
   pagination: {
     marginTop: '24px',

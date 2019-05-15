@@ -23,67 +23,35 @@ export default class FormDialog extends React.Component {
   render() {
     return (
       <div>
-        <Button variant="outlined" color="primary" onClick={this.handleClickOpen} >
-          Ajouter un produit
+        <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
+          Open form dialog
         </Button>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Ajouter un nouveau produit</DialogTitle>
+          <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
           <DialogContent>
             <DialogContentText>
-              Remplissez tous les champs du produit que vous souhaitez ajouter
+              To subscribe to this website, please enter your email address here. We will send
+              updates occasionally.
             </DialogContentText>
             <TextField
               autoFocus
               margin="dense"
-              id="designation"
-              label="Désignation"
-              type="text"
-              fullWidth
-            />
-            <TextField
-              autoFocus
-              margin="dense"
-              id="quantite"
-              label="Quantité"
-              type="text"
-              fullWidth
-            />
-            <TextField
-              autoFocus
-              margin="dense"
-              id="unite"
-              label="Unité (ex:Kg, litres)"
-              type="text"
-              fullWidth
-            />
-
-            <TextField
-              autoFocus
-              margin="dense"
-              id="prix"
-              label="Prix"
-              type="text"
-              fullWidth
-            />
-            <TextField
-              autoFocus
-              margin="dense"
-              id="fournisseur"
-              label="Fournisseur"
-              type="text"
+              id="name"
+              label="Email Address"
+              type="email"
               fullWidth
             />
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
-              Annuler
+              Cancel
             </Button>
             <Button onClick={this.handleClose} color="primary">
-              Ajouter
+              Subscribe
             </Button>
           </DialogActions>
         </Dialog>
@@ -91,4 +59,3 @@ export default class FormDialog extends React.Component {
     );
   }
 }
-

@@ -52,7 +52,7 @@ export default [
     totalDownloads: '835',
     price: '32',
     status: 'published',
-    createdAt: '04/04/2019',
+    createdAt: '04/04/2019'
   },
   {
     id: 'DEV773559',
@@ -63,7 +63,15 @@ export default [
     totalDownloads: '835',
     price: '32',
     status: 'published',
-    createdAt: '04/04/2019'
+    createdAt: '04/04/2019',
+    souscategorie:[{
+      title: [
+        'A',
+        'B',
+        'C'
+      ]
+    }
+    ]
   },
   {
     id: 'DEV773559',
