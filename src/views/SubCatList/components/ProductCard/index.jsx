@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 
 // Externals
 import PropTypes from 'prop-types';
@@ -50,7 +50,10 @@ class ProductCard extends Component {
         </div>
         <Divider />
         <div className={classes.stats}>
-          <NavLink to = '/produits/alimentation'>
+          <NavLink
+            className={classes.navLink}
+            to = "/tableau-de-bord"
+          >
             <Button
               className={classes.uploadButton}
               color="primary"

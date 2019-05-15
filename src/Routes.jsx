@@ -3,14 +3,14 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 // Views
 import Dashboard from './views/Dashboard';
-import ProductList from './views/ProductList';
+import CategoryList from './views/CategoryList';
 import UserList from './views/UserList';
 import Account from './views/Account';
 import Settings from './views/Settings';
 import SignUp from './views/SignUp';
 import SignIn from './views/SignIn';
 import NotFound from './views/NotFound';
-import SousCategorieList from './views/SousCategorieList'
+import SubCatList from './views/SubCatList'
 
 export default class Routes extends Component {
   render() {
@@ -32,7 +32,7 @@ export default class Routes extends Component {
           path="/utilisateurs"
         />
         <Route
-          component={ProductList}
+          component={CategoryList}
           exact
           path="/produits"
         />
@@ -62,7 +62,7 @@ export default class Routes extends Component {
           path="/not-found"
         />
         <Route
-          component={SousCategorieList}
+          component={SubCatList}
           exact
           path="/produits/alimentation"
         />

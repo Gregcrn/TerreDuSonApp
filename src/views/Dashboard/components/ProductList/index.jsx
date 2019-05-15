@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 // Shared services
-import { getProducts } from 'services/product';
+import { getCategory } from 'services/category';
 
 // Material helpers
 import { withStyles } from '@material-ui/core/styles';
@@ -40,13 +40,13 @@ class ProductList extends Component {
     error: null
   };
 
-  async getProducts() {
+  async getCategory() {
     try {
       this.setState({ isLoading: true });
 
       const { limit } = this.state;
 
-      const { products, productsTotal } = await getProducts(limit);
+      const { products, productsTotal } = await getCategory(limit);
 
       if (this.signal) {
         this.setState({
@@ -68,7 +68,7 @@ class ProductList extends Component {
   componentWillMount() {
     this.signal = true;
 
-    this.getProducts();
+    this.getCategory();
   }
 
   componentWillUnmount() {

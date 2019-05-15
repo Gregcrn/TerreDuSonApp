@@ -16,7 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import DashboardLayout from 'layouts/Dashboard';
 
 // Shared services
-import { getProducts } from 'services/product';
+import { getCategory } from 'services/category';
 
 // Custom components
 import ProductsToolbar from './components/ProductsToolbar';
@@ -36,11 +36,11 @@ class ProductList extends Component {
     error: null
   };
 
-  async getProducts(limit) {
+  async getCategory(limit) {
     try {
       this.setState({ isLoading: true });
 
-      const { products, productsTotal } = await getProducts(limit);
+      const { products, productsTotal } = await getCategory(limit);
 
       if (this.signal) {
         this.setState({
@@ -65,7 +65,7 @@ class ProductList extends Component {
 
     const { limit } = this.state;
 
-    this.getProducts(limit);
+    this.getCategory(limit);
   }
 
   componentWillUnmount() {

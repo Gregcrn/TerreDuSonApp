@@ -58,7 +58,7 @@ export default theme => ({
     marginLeft: theme.spacing.unit,
     color: theme.palette.text.secondary
   },
-  uploadButton: {
+  navLink: {
     margin: 'auto'
   }
 });
