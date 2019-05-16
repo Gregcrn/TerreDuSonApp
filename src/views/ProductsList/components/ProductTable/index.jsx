@@ -115,6 +115,7 @@ class ProductTable extends Component {
                   <TableCell align="left">Prix</TableCell>
                   <TableCell align="left">Stock</TableCell>
                   <TableCell align="left">Fournisseur</TableCell>
+                  <TableCell align="left">Info. Fournisseur</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -153,7 +154,7 @@ class ProductTable extends Component {
                               className={classes.nameText}
                               variant="body1"
                             >
-                              {product.designation}
+                              {product.produit}
                             </Typography>
                           </Link>
                         </div>
@@ -162,13 +163,16 @@ class ProductTable extends Component {
                         {product.unit}
                       </TableCell>
                       <TableCell className={classes.tableCell}>
+                        {product.prix}
+                      </TableCell>
+                      <TableCell className={classes.tableCell}>
                         {product.stock}
                       </TableCell>
                       <TableCell className={classes.tableCell}>
-                        {product.price}
+                        {product.fournisseur}
                       </TableCell>
                       <TableCell className={classes.tableCell}>
-                        {product.provider}
+                        {product.adresse}
                       </TableCell>
                     </TableRow>
                   ))}
