@@ -20,9 +20,9 @@ import Typography from '@material-ui/core/Typography/index';
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
-// Shared components
-import FacebookIcon from 'icons/Facebook';
-import GoogleIcon from 'icons/Google';
+// // Shared components
+// import FacebookIcon from 'icons/Facebook';
+// import GoogleIcon from 'icons/Google';
 
 // Component styles
 import styles from './styles';
@@ -133,27 +133,13 @@ class SignIn extends Component {
           >
             <div className={classes.quote}>
               <div className={classes.quoteInner}>
-                <Typography
+                {/* <Typography
                   className={classes.quoteText}
-                  variant="h1"
+                  variant="h1" 
                 >
-                  Hella narwhal Cosby sweater McSweeney's, salvia kitsch before
-                  they sold out High Life.
-                </Typography>
-                <div className={classes.person}>
-                  <Typography
-                    className={classes.name}
-                    variant="body1"
-                  >
-                    Takamaru Ayako
-                  </Typography>
-                  <Typography
-                    className={classes.bio}
-                    variant="body2"
-                  >
-                    Manager at inVision
-                  </Typography>
-                </div>
+                  Bienvenue au application Terres Du Son
+                </Typography> */}
+                
               </div>
             </div>
           </Grid>
@@ -178,43 +164,18 @@ class SignIn extends Component {
                     className={classes.title}
                     variant="h2"
                   >
-                    Sign in
+                    Se connecter
                   </Typography>
                   <Typography
                     className={classes.subtitle}
                     variant="body1"
                   >
-                    Sign in with social media
-                  </Typography>
-                  <Button
-                    className={classes.facebookButton}
-                    color="primary"
-                    onClick={this.handleSignIn}
-                    size="large"
-                    variant="contained"
-                  >
-                    <FacebookIcon className={classes.facebookIcon} />
-                    Login with Facebook
-                  </Button>
-                  <Button
-                    className={classes.googleButton}
-                    onClick={this.handleSignIn}
-                    size="large"
-                    variant="contained"
-                  >
-                    <GoogleIcon className={classes.googleIcon} />
-                    Login with Google
-                  </Button>
-                  <Typography
-                    className={classes.sugestion}
-                    variant="body1"
-                  >
-                    or login with email address
+                     {/* se connecter avec adresse mail */}
                   </Typography>
                   <div className={classes.fields}>
                     <TextField
                       className={classes.textField}
-                      label="Email address"
+                      label="votre email"
                       name="email"
                       onChange={event =>
                         this.handleFieldChange('email', event.target.value)
@@ -233,7 +194,7 @@ class SignIn extends Component {
                     )}
                     <TextField
                       className={classes.textField}
-                      label="Password"
+                      label="votre mot de passe"
                       name="password"
                       onChange={event =>
                         this.handleFieldChange('password', event.target.value)
@@ -270,7 +231,7 @@ class SignIn extends Component {
                       size="large"
                       variant="contained"
                     >
-                      Sign in now
+                      Se connecter
                     </Button>
                   )}
                   <Typography
