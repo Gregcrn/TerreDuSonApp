@@ -53,7 +53,8 @@ class AlertDialogSlide extends React.Component {
         <Button
           color="primary"
           onClick={this.handleClickOpen}
-          variant="contained">
+          variant="contained"
+        >
           Sauvegarder
         </Button>
         <Dialog
