@@ -1,3 +1,5 @@
+import serv from './serv'
+
 const request = new XMLHttpRequest();
 request.open('GET', 'http://192.168.1.165:8888/API-TerresDuSon/product/productlist.php', false);
 request.send();

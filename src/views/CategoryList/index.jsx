@@ -31,8 +31,8 @@ class ProductList extends Component {
   state = {
     isLoading: false,
     limit: 100,
-    products: [],
-    productsTotal: 0,
+    categories: [],
+    categoriesTotal: 0,
     error: null
   };
 
@@ -40,13 +40,13 @@ class ProductList extends Component {
     try {
       this.setState({ isLoading: true });
 
-      const { products, productsTotal } = await getCategory(limit);
+      const { categories, categoriesTotal } = await getCategory(limit);
 
       if (this.signal) {
         this.setState({
           isLoading: false,
-          products,
-          productsTotal,
+          categories,
+          categoriesTotal,
           limit
         });
       }
@@ -72,9 +72,9 @@ class ProductList extends Component {
     this.signal = false;
   }
 
-  renderProducts() {
+  renderCategories() {
     const { classes } = this.props;
-    const { isLoading, products } = this.state;
+    const { isLoading, categories } = this.state;
 
     if (isLoading) {
       return (
@@ -84,27 +84,26 @@ class ProductList extends Component {
       );
     }
 
-    if (products.length === 0) {
+    if (categories.length === 0) {
       return (
         <Typography variant="h6">Aucune cétégorie disponible pour le moment</Typography>
       );
     }
-
     return (
       <Grid
         container
         spacing={24}
       >
-        {products.map(product => (
+        {categories.map(category => (
           <Grid
             item
-            key={product.id}
+            key={category.id}
             lg={4}
             md={6}
             xs={12}
           >
             <Link to="#">
-              <ProductCard product={product} />
+              <ProductCard category={category} />
             </Link>
           </Grid>
         ))}
@@ -116,10 +115,10 @@ class ProductList extends Component {
     const { classes } = this.props;
 
     return (
-      <DashboardLayout title="Produits">
+      <DashboardLayout title="Categories">
         <div className={classes.root}>
           <ProductsToolbar />
-          <div className={classes.content}>{this.renderProducts()}</div>
+          <div className={classes.content}>{this.renderCategories()}</div>
         </div>
       </DashboardLayout>
     );

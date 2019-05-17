@@ -31,8 +31,8 @@ class ProductList extends Component {
   state = {
     isLoading: false,
     limit: 100,
-    products: [],
-    productsTotal: 0,
+    subCategories: [],
+    subCategoriesTotal: 0,
     error: null
   };
 
@@ -40,13 +40,13 @@ class ProductList extends Component {
     try {
       this.setState({ isLoading: true });
 
-      const { products, productsTotal } = await getSubCategory(limit);
+      const { subCategories, subCategoriesTotal } = await getSubCategory(limit);
 
       if (this.signal) {
         this.setState({
           isLoading: false,
-          products,
-          productsTotal,
+          subCategories,
+          subCategoriesTotal,
           limit
         });
       }
@@ -74,7 +74,7 @@ class ProductList extends Component {
 
   renderSubCategory() {
     const { classes } = this.props;
-    const { isLoading, products } = this.state;
+    const { isLoading, subCategories } = this.state;
 
     if (isLoading) {
       return (
@@ -84,27 +84,30 @@ class ProductList extends Component {
       );
     }
 
-    if (products.length === 0) {
+    if (subCategories.length === 0) {
       return (
         <Typography variant="h6">Aucune cétégorie disponible pour le moment</Typography>
       );
     }
+
+    const path_slice = this.props.location.pathname.split('/');
+    const lastSegment = path_slice.pop() || path_slice.pop();
 
     return (
       <Grid
         container
         spacing={24}
       >
-        {products.map(product => (
+        {subCategories.filter(subCat => subCat.categories_id === lastSegment ).map(subCategory => (
           <Grid
             item
-            key={product.id}
+            key={subCategory.id}
             lg={4}
             md={6}
             xs={12}
           >
             <Link to="#">
-              <ProductCard product={product} />
+              <ProductCard subCategory={subCategory} />
             </Link>
           </Grid>
         ))}

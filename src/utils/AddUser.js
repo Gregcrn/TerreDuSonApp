@@ -5,6 +5,7 @@ const AddUser = async (user) => {
         let response = await axios.post("http://192.168.1.165:8888/API-TerresDuSon/user/adduser.php", 
             user
         );
+        return response;
     } catch(e){
         console.log(e);
     }
