@@ -5,8 +5,8 @@ export const getCategory = (limit = 100) => {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve({
-        products: category.slice(0, limit),
-        productsTotal: category.length
+        categories: category.slice(0, limit),
+        categoriesTotal: category.length
       });
     }, 700);
   });

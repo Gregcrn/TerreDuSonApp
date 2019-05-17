@@ -35,8 +35,8 @@ class ProductList extends Component {
   state = {
     isLoading: false,
     limit: 4,
-    products: [],
-    productsTotal: 0,
+    categories: [],
+    categoriesTotal: 0,
     error: null
   };
 
@@ -46,13 +46,13 @@ class ProductList extends Component {
 
       const { limit } = this.state;
 
-      const { products, productsTotal } = await getCategory(limit);
+      const { categories, categoriesTotal } = await getCategory(limit);
 
       if (this.signal) {
         this.setState({
           isLoading: false,
-          products,
-          productsTotal
+          categories,
+          categoriesTotal
         });
       }
     } catch (error) {
@@ -75,9 +75,9 @@ class ProductList extends Component {
     this.signal = false;
   }
 
-  renderProducts() {
+  renderCategories() {
     const { classes } = this.props;
-    const { isLoading, products } = this.state;
+    const { isLoading, categories } = this.state;
 
     if (isLoading) {
       return (
@@ -87,33 +87,33 @@ class ProductList extends Component {
       );
     }
 
-    if (products.length === 0) {
+    if (categories.length === 0) {
       return (
-        <Typography variant="h6">There are no products available</Typography>
+        <Typography variant="h6">There are no categories available</Typography>
       );
     }
 
     return (
       <Fragment>
-        {products.map((product, i) => (
+        {categories.map((category, i) => (
           <div
             className={classes.product}
             key={i}
           >
             <div className={classes.productImageWrapper}>
               <img
-                alt="Product Name"
+                alt="category Name"
                 className={classes.productImage}
-                src={product.imageUrl}
+                src={category.imageUrl}
               />
             </div>
             <div className={classes.productDetails}>
-              <Link to={`/products/${product.id}`}>
+              <Link to={`/categories/${category.id}`}>
                 <Typography
                   className={classes.productTitle}
                   variant="h5"
                 >
-                  {product.title}
+                  {category.title}
                 </Typography>
               </Link>
               <Typography
@@ -136,7 +136,7 @@ class ProductList extends Component {
 
   render() {
     const { classes, className, ...rest } = this.props;
-    const { productsTotal } = this.state;
+    const { categoriesTotal } = this.state;
 
     const rootClassName = classNames(classes.root, className);
 
@@ -147,12 +147,12 @@ class ProductList extends Component {
       >
         <PortletHeader noDivider>
           <PortletLabel
-            subtitle={`${productsTotal} au total`}
+            subtitle={`${categoriesTotal} au total`}
             title="Dernières catégories"
           />
         </PortletHeader>
         <PortletContent className={classes.portletContent}>
-          {this.renderProducts()}
+          {this.renderCategories()}
         </PortletContent>
         <PortletFooter className={classes.portletFooter}>
           <Link to = "/produits">

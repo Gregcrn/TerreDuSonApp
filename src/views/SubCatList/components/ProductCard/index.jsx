@@ -21,7 +21,7 @@ import styles from './styles';
 
 class ProductCard extends Component {
   render() {
-    const { classes, className, product } = this.props;
+    const { classes, className, subCategory } = this.props;
 
     const rootClassName = classNames(classes.root, className);
 
@@ -29,9 +29,9 @@ class ProductCard extends Component {
       <Paper className={rootClassName}>
         <div className={classes.imageWrapper}>
           <img
-            alt="Product"
+            alt="SubCategory"
             className={classes.image}
-            src={product.imageUrl}
+            src={subCategory.imageUrl}
           />
         </div>
         <div className={classes.details}>
@@ -39,20 +39,20 @@ class ProductCard extends Component {
             className={classes.title}
             variant="h4"
           >
-            {product.title}
+            {subCategory.title}
           </Typography>
           <Typography
             className={classes.description}
             variant="body1"
           >
-            {product.description}
+            {subCategory.description}
           </Typography>
         </div>
         <Divider />
         <div className={classes.stats}>
           <NavLink
             className={classes.navLink}
-            to = "/produits/alimentation/boulangerie"
+            to = {`/categories/${subCategory.categories_id}/${subCategory.id}`}
           >
             <Button
               className={classes.uploadButton}
@@ -71,7 +71,7 @@ class ProductCard extends Component {
 ProductCard.propTypes = {
   className: PropTypes.string,
   classes: PropTypes.object.isRequired,
-  product: PropTypes.object.isRequired
+  subCategory: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(ProductCard);

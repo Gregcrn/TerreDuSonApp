@@ -35,7 +35,7 @@ export default class Routes extends Component {
         <Route
           component={CategoryList}
           exact
-          path="/produits"
+          path="/categories"
         />
         <Route
           component={Account}
@@ -60,12 +60,12 @@ export default class Routes extends Component {
         <Route
           component={SubCatList}
           exact
-          path="/produits/alimentation"
+          path="/categories/:id"
         />
         <Route
           component={ProductsList}
           exact
-          path="/produits/alimentation/boulangerie"
+          path="/categories/:categories_id/:id"
         />
         <Route
           component={NotFound}

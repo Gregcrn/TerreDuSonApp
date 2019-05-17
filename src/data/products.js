@@ -1,5 +1,7 @@
+import serv from './serv'
+
 const request = new XMLHttpRequest();
-request.open("GET", 'http://localhost:8888/API-TerresDuSon/product/productlist.php', false);
+request.open("GET", 'http://' + serv + ':8888/API-TerresDuSon/product/productlist.php', false);
 request.send();
 
 export default JSON.parse(request.responseText);

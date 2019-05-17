@@ -5,8 +5,8 @@ export const getSubCategory = (limit = 100) => {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve({
-        products: subcategory.slice(0, limit),
-        productsTotal: subcategory.length
+        subCategories: subcategory.slice(0, limit),
+        subCategoriesTotal: subcategory.length
       });
     }, 700);
   });
