@@ -119,7 +119,7 @@ class ProductList extends Component {
     const { classes } = this.props;
 
     return (
-      <DashboardLayout title="Produits">
+      <DashboardLayout title="Sous Categories">
         <div className={classes.root}>
           <ProductsToolbar />
           <div className={classes.content}>{this.renderSubCategory()}</div>

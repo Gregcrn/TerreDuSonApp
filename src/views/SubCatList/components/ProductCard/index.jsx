@@ -59,7 +59,7 @@ class ProductCard extends Component {
               color="primary"
               variant="text"
             >
-            Voir catégorie
+            Voir produits
             </Button>
           </NavLink>
         </div>
