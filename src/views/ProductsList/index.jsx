@@ -105,7 +105,7 @@ class UserList extends Component {
     const { selectedProducts } = this.state;
 
     return (
-      <DashboardLayout title="Utilisateurs">
+      <DashboardLayout title="Produits">
         <div className={classes.root}>
           <ProductToolbar selectedProducts={selectedProducts} />
           <div className={classes.content}>{this.renderProducts()}</div>
