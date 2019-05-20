@@ -75,6 +75,13 @@ class UserList extends Component {
     const { classes } = this.props;
     const { isLoading, products, error } = this.state;
 
+    const path_slice = this.props.location.pathname.split('/');
+    const lastSegment = path_slice.pop() || path_slice.pop();
+
+    const subcatProd = products.filter((product) =>
+      product.sous_categorie_id === lastSegment 
+    )
+
     if (isLoading) {
       return (
         <div className={classes.progressWrapper}>
@@ -87,7 +94,7 @@ class UserList extends Component {
       return <Typography variant="h6">{error}</Typography>;
     }
 
-    if (products.length === 0) {
+    if (subcatProd.length === 0) {
       return <Typography variant="h6">There are no users</Typography>;
     }
 
@@ -95,7 +102,7 @@ class UserList extends Component {
       <ProductTable
         //
         onSelect={this.handleSelect}
-        products={products}
+        products={subcatProd}
       />
     );
   }
@@ -103,6 +110,7 @@ class UserList extends Component {
   render() {
     const { classes } = this.props;
     const { selectedProducts } = this.state;
+    console.log(this.props.location)
 
     return (
       <DashboardLayout title="Produits">
