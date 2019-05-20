@@ -19,6 +19,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import TablePagination from '@material-ui/core/TablePagination';
+import SearchInput from 'components/SearchInput';
 
 // Shared helpers
 
@@ -27,14 +28,17 @@ import TablePagination from '@material-ui/core/TablePagination';
 import Portlet from 'components/Portlet';
 import PortletContent from 'components/PortletContent';
 
+
+
 // Component styles
 import styles from './styles';
 
 class ProductTable extends Component {
   state = {
     selectedProducts: [],
-    rowsPerPage: 10,
-    page: 0
+    rowsPerPage: 20,
+    page: 0,
+    search: '',
   };
 
   handleSelectAll = event => {
@@ -86,16 +90,36 @@ class ProductTable extends Component {
     this.setState({ rowsPerPage: event.target.value });
   };
 
+  updateSearch(event) {
+    this.setState({search : event.target.value.substr(0, 20)})
+  }
+  handleChangeItemsMenu = name => event => {
+    this.setState({ [name]: event.target.value });
+  };
+
   render() {
     const { classes, className, products } = this.props;
     const { activeTab, selectedProducts, rowsPerPage, page } = this.state;
 
     const rootClassName = classNames(classes.root, className);
 
+    const filteredProduct = this.props.products.filter(
+      (product) => {
+        return product.produit.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+      }
+    )
     return (
       <Portlet className={rootClassName}>
         <PortletContent noPadding>
           <PerfectScrollbar>
+            <div className={classes.margin}>
+              <SearchInput
+                className={classes.searchInput}
+                onChange={this.updateSearch.bind(this)}
+                placeholder="Rechercher un produit"
+                value={this.state.search}
+              />
+            </div>
             <Table>
               <TableHead>
                 <TableRow>
@@ -119,7 +143,7 @@ class ProductTable extends Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {products
+                {filteredProduct
                   .filter(product => {
                     if (activeTab === 1) {
                       return !product.returning;
@@ -181,18 +205,19 @@ class ProductTable extends Component {
           </PerfectScrollbar>
           <TablePagination
             backIconButtonProps={{
-              'aria-label': 'Previous Page'
+              'aria-label': 'Page précedente'
             }}
             component="div"
             count={products.length}
+            labelRowsPerPage="Produits par page"
             nextIconButtonProps={{
-              'aria-label': 'Next Page'
+              'aria-label': 'Page suivante'
             }}
             onChangePage={this.handleChangePage}
             onChangeRowsPerPage={this.handleChangeRowsPerPage}
             page={page}
             rowsPerPage={rowsPerPage}
-            rowsPerPageOptions={[5, 10, 25]}
+            rowsPerPageOptions={[20, 40, 50]}
           />
         </PortletContent>
       </Portlet>
@@ -215,3 +240,4 @@ ProductTable.defaultProps = {
 };
 
 export default withStyles(styles)(ProductTable);
+

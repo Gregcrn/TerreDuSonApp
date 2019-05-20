@@ -8,15 +8,12 @@ import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 
 // Material components
-import Button from '@material-ui/core/Button';
+
 import IconButton from '@material-ui/core/IconButton';
-import ArrowDownwardOutlinedIcon from '@material-ui/icons/ArrowDownwardOutlined';
-import ArrowUpwardOutlinedIcon from '@material-ui/icons/ArrowUpwardOutlined';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 // Shared components
-import SearchInput from 'components/SearchInput';
-import DisplayMode from 'components/DisplayMode';
+
 
 // Component styles
 import styles from './styles';
@@ -39,36 +36,6 @@ class ProductToolbar extends Component {
               <DeleteIcon />
             </IconButton>
           )}
-          <Button
-            className={classes.importButton}
-            size="small"
-            variant="outlined"
-          >
-            <ArrowDownwardOutlinedIcon className={classes.importIcon} /> Importer
-          </Button>
-          <Button
-            className={classes.exportButton}
-            size="small"
-            variant="outlined"
-          >
-            <ArrowUpwardOutlinedIcon className={classes.exportIcon} />
-            Exporter
-          </Button>
-          <Button
-            color="primary"
-            size="small"
-            variant="outlined"
-          >
-            Ajouter un utilisateur
-          </Button>
-        </div>
-        <div className={classes.row}>
-          <SearchInput
-            className={classes.searchInput}
-            placeholder="Rechercher produit"
-          />
-          <span className={classes.spacer} />
-          <DisplayMode mode="list" />
         </div>
       </div>
     );
