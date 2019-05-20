@@ -70,14 +70,10 @@ export default theme => ({
     flexGrow: 1,
   },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 200,
+    width: '100%',
+    fontSize: 12
   },
   dense: {
     marginTop: 19,
-  },
-  menu: {
-    width: 200,
   },
 });

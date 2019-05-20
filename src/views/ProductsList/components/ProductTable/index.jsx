@@ -20,6 +20,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import TablePagination from '@material-ui/core/TablePagination';
 import SearchInput from 'components/SearchInput';
+import TextField from '@material-ui/core/TextField';
 
 // Shared helpers
 
@@ -39,6 +40,7 @@ class ProductTable extends Component {
     rowsPerPage: 20,
     page: 0,
     search: '',
+    quantity:'0'
   };
 
   handleSelectAll = event => {
@@ -60,7 +62,6 @@ class ProductTable extends Component {
   handleSelectOne = (event, id) => {
     const { onSelect } = this.props;
     const { selectedProducts } = this.state;
-
     const selectedIndex = selectedProducts.indexOf(id);
     let newSelectedProduct = [];
 
@@ -80,8 +81,8 @@ class ProductTable extends Component {
     this.setState({ selectedProducts: newSelectedProduct });
 
     onSelect(newSelectedProduct);
-  };
 
+  };
   handleChangePage = (event, page) => {
     this.setState({ page });
   };
@@ -97,6 +98,8 @@ class ProductTable extends Component {
     this.setState({ [name]: event.target.value });
   };
 
+
+
   render() {
     const { classes, className, products } = this.props;
     const { activeTab, selectedProducts, rowsPerPage, page } = this.state;
@@ -105,9 +108,11 @@ class ProductTable extends Component {
 
     const filteredProduct = this.props.products.filter(
       (product) => {
-        return product.produit.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+        return (product.produit.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1) || product.fournisseur.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
       }
     )
+    console.log(selectedProducts)
+    
     return (
       <Portlet className={rootClassName}>
         <PortletContent noPadding>
@@ -116,7 +121,7 @@ class ProductTable extends Component {
               <SearchInput
                 className={classes.searchInput}
                 onChange={this.updateSearch.bind(this)}
-                placeholder="Rechercher un produit"
+                placeholder="Rechercher un produit ou un fournisseur"
                 value={this.state.search}
               />
             </div>
@@ -140,6 +145,7 @@ class ProductTable extends Component {
                   <TableCell align="left">Stock</TableCell>
                   <TableCell align="left">Fournisseur</TableCell>
                   <TableCell align="left">Info. Fournisseur</TableCell>
+                  <TableCell aligin="left">Quantité</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -166,10 +172,10 @@ class ProductTable extends Component {
                       <TableCell className={classes.tableCell}>
                         <div className={classes.tableCellInner}>
                           <Checkbox
-                            checked={selectedProducts.indexOf(product.id) !== -1}
+                            checked={selectedProducts.indexOf(product) !== -1}
                             color="primary"
                             onChange={event =>
-                              this.handleSelectOne(event, product.id)
+                              this.handleSelectOne(event, product)
                             }
                             value="true"
                           />
@@ -197,6 +203,15 @@ class ProductTable extends Component {
                       </TableCell>
                       <TableCell className={classes.tableCell}>
                         {product.adresse}
+                      </TableCell>
+                      <TableCell className={classes.tableCell}>
+                        <TextField
+                          className={classes.textField}
+                          id="standard-with-placeholder"
+                          label="Séléctionner"
+                          margin="normal"
+                          placeholder={this.state.quantity}
+                        />
                       </TableCell>
                     </TableRow>
                   ))}
