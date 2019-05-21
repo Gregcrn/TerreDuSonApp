@@ -12,7 +12,8 @@ import SignIn from './views/SignIn';
 import NotFound from './views/NotFound';
 import SubCatList from './views/SubCatList'
 import ProductsList from './views/ProductsList';
-import CardProducts from './views/CardProducts';
+import SelectProducts from './views/ProductsList/components/SelectProducts';
+
 
 export default class Routes extends Component {
   render() {
@@ -69,7 +70,7 @@ export default class Routes extends Component {
           path="/categories/:categories_id/:id"
         />
         <Route
-          component={CardProducts}
+          component={SelectProducts}
           exact
           path="/panier"
         />

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+
 
 // Externals
 import PropTypes from 'prop-types';
@@ -20,15 +20,11 @@ import { getProducts } from 'services/products';
 // Custom components
 import ProductTable from './components/ProductTable';
 import ProductToolbar from './components/ProductToolbar';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
-import TextField from '@material-ui/core/TextField';
-import Checkbox from '@material-ui/core/Checkbox';
-
+import SelectProducts from './components/SelectProducts';
 
 // Component styles
 import styles from './style';
+
 
 class UserList extends Component {
   signal = true;
@@ -125,62 +121,9 @@ class UserList extends Component {
           <ProductToolbar selectedProducts={selectedProducts} />
           <div className={classes.content}>{this.renderProducts()}</div>
           <div className={classes.content}>
-            <TableBody>
-              {selectedProducts
-                .map(product => (
-                  <TableRow
-                    className={classes.tableRow}
-                    hover
-                    key={product.id}
-                    selected={selectedProducts.indexOf(product.id) !== -1}
-                  >
-                    <TableCell className={classes.tableCell}>
-                      <div className={classes.tableCellInner}>
-                        <Checkbox
-                          checked={selectedProducts.indexOf(product) !== -1}
-                          color="primary"
-                          onChange={event =>
-                            this.handleSelectOne(event, product)
-                          }
-                          value="true"
-                        />
-                        <Link to="#">
-                          <Typography
-                            className={classes.nameText}
-                            variant="body1"
-                          >
-                            {product.produit}
-                          </Typography>
-                        </Link>
-                      </div>
-                    </TableCell>
-                    <TableCell className={classes.tableCell}>
-                      {product.unit}
-                    </TableCell>
-                    <TableCell className={classes.tableCell}>
-                      {product.prix}
-                    </TableCell>
-                    <TableCell className={classes.tableCell}>
-                      {product.stock}
-                    </TableCell>
-                    <TableCell className={classes.tableCell}>
-                      {product.fournisseur}
-                    </TableCell>
-                    <TableCell className={classes.tableCell}>
-                      {product.adresse}
-                    </TableCell>
-                    <TableCell className={classes.tableCell}>
-                      <TextField
-                        className={classes.textField}
-                        id="standard-with-placeholder"
-                        label="Séléctionner"
-                        margin="normal"
-                        placeholder={this.state.quantity}
-                      />
-                    </TableCell>
-                  </TableRow>
-                ))}
-            </TableBody>
+            <SelectProducts
+              products={this.renderProducts()}
+            />
           </div>
         </div>
       </DashboardLayout>

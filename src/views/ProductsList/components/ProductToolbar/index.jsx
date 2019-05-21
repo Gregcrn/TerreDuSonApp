@@ -20,7 +20,7 @@ import styles from './styles';
 
 class ProductToolbar extends Component {
   render() {
-    const { classes, className, selectedUsers } = this.props;
+    const { classes, className, selectedProducts } = this.props;
 
     const rootClassName = classNames(classes.root, className);
 
@@ -28,7 +28,7 @@ class ProductToolbar extends Component {
       <div className={rootClassName}>
         <div className={classes.row}>
           <span className={classes.spacer} />
-          {selectedUsers.length > 0 && (
+          {selectedProducts.length > 0 && (
             <IconButton
               className={classes.deleteButton}
               onClick={this.handleDeleteUsers}
@@ -45,11 +45,11 @@ class ProductToolbar extends Component {
 ProductToolbar.propTypes = {
   className: PropTypes.string,
   classes: PropTypes.object.isRequired,
-  selectedUsers: PropTypes.array
+  selectedProducts: PropTypes.array
 };
 
 ProductToolbar.defaultProps = {
-  selectedUsers: []
+  selectedProducts: []
 };
 
 export default withStyles(styles)(ProductToolbar);
