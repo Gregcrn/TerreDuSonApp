@@ -40,7 +40,7 @@ class ProductTable extends Component {
     rowsPerPage: 20,
     page: 0,
     search: '',
-    quantity:'0'
+    quantity: null
   };
 
   handleSelectAll = event => {
@@ -118,6 +118,7 @@ class ProductTable extends Component {
         return (product.produit.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1) || product.fournisseur.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
       }
     )
+    // console.log(selectedProducts)
     
     
     return (
@@ -219,7 +220,8 @@ class ProductTable extends Component {
                           id="standard-with-placeholder"
                           label="Séléctionner"
                           margin="normal"
-                          placeholder={this.state.quantity}
+                          placeholder="Selectionner"
+                          value={this.state.quantity}
                         />
                       </TableCell>
                     </TableRow>

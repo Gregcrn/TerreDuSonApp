@@ -15,11 +15,11 @@ import Typography from '@material-ui/core/Typography';
 import DashboardLayout from 'layouts/Dashboard';
 
 // Shared services
-import { getProducts } from 'services/products';
+// import { getProducts } from 'services/products';
 
 // Custom components
-import ProductTable from './components/ProductTable';
-import ProductToolbar from './components/ProductToolbar';
+import ProductTable from '../ProductsList/components/ProductTable';
+import ProductToolbar from '../ProductsList/components/ProductToolbar';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
@@ -30,7 +30,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 // Component styles
 import styles from './style';
 
-class UserList extends Component {
+class CardProduct extends Component {
   signal = true;
 
   state = {
@@ -40,31 +40,6 @@ class UserList extends Component {
     selectedProducts: [],
     error: null
   };
-
-  async getProducts() {
-    try {
-      this.setState({ isLoading: true });
-
-      const { limit } = this.state;
-
-      const { products } = await getProducts(limit);
-
-      if (this.signal) {
-        this.setState({
-          isLoading: false,
-          products
-        });
-      }
-    } catch (error) {
-      if (this.signal) {
-        this.setState({
-          isLoading: false,
-          error
-        });
-      }
-    }
-  }
-
   componentDidMount() {
     this.signal = true;
     this.getProducts();
@@ -109,7 +84,7 @@ class UserList extends Component {
       <ProductTable
         //
         onSelect={this.handleSelect}
-        products={subcatProd}
+        products={this.state.selectedProducts}
       />
     );
   }
@@ -117,7 +92,7 @@ class UserList extends Component {
   render() {
     const { classes } = this.props;
     const { selectedProducts } = this.state;
-    // console.log(selectedProducts)
+    console.log(selectedProducts)
 
     return (
       <DashboardLayout title="Produits">
@@ -125,6 +100,7 @@ class UserList extends Component {
           <ProductToolbar selectedProducts={selectedProducts} />
           <div className={classes.content}>{this.renderProducts()}</div>
           <div className={classes.content}>
+          
             <TableBody>
               {selectedProducts
                 .map(product => (
@@ -188,9 +164,9 @@ class UserList extends Component {
   }
 }
 
-UserList.propTypes = {
+CardProduct.propTypes = {
   className: PropTypes.string,
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(UserList);
+export default withStyles(styles)(CardProduct);
