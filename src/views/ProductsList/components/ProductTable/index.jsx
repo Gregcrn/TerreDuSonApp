@@ -57,7 +57,6 @@ class ProductTable extends Component {
     this.setState({ selectedProducts });
 
     onSelect(selectedProducts);
-    console.log(selectedProducts);
   };
   
 
@@ -227,14 +226,14 @@ class ProductTable extends Component {
                     </TableRow>
                    
                   ))}
-                  <button
+                <button
                         
-                            color="primary"
-                            onClick={event =>
-                              this.handleadd(event)
-                            }
-                            value="true"
-                          >Ajouter au panier</button>
+                  color="primary"
+                  onClick={event =>
+                    this.handleadd(event)
+                  }
+                  value="true"
+                >Ajouter au panier</button>
               </TableBody>
             </Table>
           </PerfectScrollbar>

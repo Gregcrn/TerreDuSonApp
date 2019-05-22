@@ -20,7 +20,6 @@ import { getProducts } from 'services/products';
 // Custom components
 import ProductTable from './components/ProductTable';
 import ProductToolbar from './components/ProductToolbar';
-import SelectProducts from './components/SelectProducts';
 
 // Component styles
 import styles from './style';
@@ -120,11 +119,6 @@ class UserList extends Component {
         <div className={classes.root}>
           <ProductToolbar selectedProducts={selectedProducts} />
           <div className={classes.content}>{this.renderProducts()}</div>
-          <div className={classes.content}>
-            <SelectProducts
-              products={this.renderProducts()}
-            />
-          </div>
         </div>
       </DashboardLayout>
     );
