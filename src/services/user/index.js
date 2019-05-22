@@ -21,8 +21,10 @@ function lookupUser(user) {
 export const getUsers = (limit = 10) => {
   return new Promise(resolve => {
     setTimeout(() => {
-      const usersLookup = users.slice(0, limit).map(lookupUser);
+      //const usersLookup = users.slice(0, limit);
+      const usersLookup = users.slice(0, limit);
 
+      
       resolve({
         users: usersLookup,
         usersTotal: users.length
@@ -35,7 +37,7 @@ export const getUser = id => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const user = users.find(user => user.id === id);
-
+      console.log(user);
       if (user) {
         resolve({
           user: lookupUser(user)

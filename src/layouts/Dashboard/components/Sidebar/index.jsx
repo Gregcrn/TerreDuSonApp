@@ -50,7 +50,7 @@ class Sidebar extends Component {
         </div>
         <Divider className={classes.logoDivider} />
         <div className={classes.profile}>
-          <Link to="/account">
+          <Link to="/profil">
             <Avatar
               className={classes.avatar}
               src="/images/avatars/avatar_1.png"
@@ -92,14 +92,14 @@ class Sidebar extends Component {
             activeClassName={classes.activeListItem}
             className={classes.listItem}
             component={NavLink}
-            to="/produits"
+            to="/categories"
           >
             <ListItemIcon className={classes.listItemIcon}>
               <ShoppingIcon />
             </ListItemIcon>
             <ListItemText
               classes={{ primary: classes.listItemText }}
-              primary="Produits"
+              primary="Categories"
             />
           </ListItem>
           <ListItem
@@ -156,6 +156,20 @@ class Sidebar extends Component {
             <ListItemText
               classes={{ primary: classes.listItemText }}
               primary="Préférences"
+            />
+          </ListItem>
+          <ListItem
+            activeClassName={classes.activeListItem}
+            className={classes.listItem}
+            component={NavLink}
+            to="/basketlist"
+          >
+            <ListItemIcon className={classes.listItemIcon}>
+              <SettingsOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText
+              classes={{ primary: classes.listItemText }}
+              primary="Panier"
             />
           </ListItem>
         </List>

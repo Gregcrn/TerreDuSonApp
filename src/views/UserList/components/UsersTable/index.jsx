@@ -11,7 +11,7 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 import { withStyles } from '@material-ui/core/styles';
 
 // Material components
-import Avatar from '@material-ui/core/Avatar';
+// import Avatar from '@material-ui/core/Avatar';
 import Checkbox from '@material-ui/core/Checkbox';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -22,7 +22,7 @@ import Typography from '@material-ui/core/Typography';
 import TablePagination from '@material-ui/core/TablePagination';
 
 // Shared helpers
-import getInitials from 'helpers/getInitials';
+// import getInitials from 'helpers/getInitials';
 
 // Shared components
 import Portlet from 'components/Portlet';
@@ -113,9 +113,9 @@ class UsersTable extends Component {
                     Nom
                   </TableCell>
                   <TableCell align="left">Rôle</TableCell>
-                  <TableCell align="left">Activité/Comission</TableCell>
-                  <TableCell align="left">Téléphone</TableCell>
-                  <TableCell align="left">Date d'inscription</TableCell>
+                  <TableCell align="left">Email</TableCell>
+                  <TableCell align="left">Budget</TableCell>
+                  <TableCell align="left">Date d'ajout</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -149,33 +149,33 @@ class UsersTable extends Component {
                             }
                             value="true"
                           />
-                          <Avatar
+                          {/* <Avatar
                             className={classes.avatar}
                             src={user.avatarUrl}
                           >
                             {getInitials(user.name)}
-                          </Avatar>
+                          </Avatar> */}
                           <Link to="#">
                             <Typography
                               className={classes.nameText}
                               variant="body1"
                             >
-                              {user.name}
+                              {user.nom}
                             </Typography>
                           </Link>
                         </div>
                       </TableCell>
                       <TableCell className={classes.tableCell}>
-                        {user.id}
+                        {user.role}
                       </TableCell>
                       <TableCell className={classes.tableCell}>
-                        {user.address.state}
+                        {user.email}
                       </TableCell>
                       <TableCell className={classes.tableCell}>
-                        {user.phone}
+                        {user.budget}
                       </TableCell>
                       <TableCell className={classes.tableCell}>
-                        {moment(user.createdAt).format('DD/MM/YYYY')}
+                        {moment(user.date).format('DD/MM/YYYY')}
                       </TableCell>
                     </TableRow>
                   ))}

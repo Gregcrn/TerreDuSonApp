@@ -3,13 +3,18 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 // Views
 import Dashboard from './views/Dashboard';
-import ProductList from './views/ProductList';
+import CategoryList from './views/CategoryList';
 import UserList from './views/UserList';
 import Account from './views/Account';
 import Settings from './views/Settings';
 import SignUp from './views/SignUp';
 import SignIn from './views/SignIn';
 import NotFound from './views/NotFound';
+import SubCatList from './views/SubCatList'
+import ProductsList from './views/ProductsList';
+import BasketList from './views/BasketList';
+import SelectProducts from './views/ProductsList/components/SelectProducts';
+
 
 export default class Routes extends Component {
   render() {
@@ -31,9 +36,9 @@ export default class Routes extends Component {
           path="/utilisateurs"
         />
         <Route
-          component={ProductList}
+          component={CategoryList}
           exact
-          path="/produits"
+          path="/categories"
         />
         <Route
           component={Account}
@@ -54,6 +59,16 @@ export default class Routes extends Component {
           component={SignIn}
           exact
           path="/sign-in"
+        />
+        <Route
+          component={SubCatList}
+          exact
+          path="/categories/:id"
+        />
+        <Route
+          component={ProductsList}
+          exact
+          path="/categories/:categories_id/:id"
         />
         <Route
           component={NotFound}
