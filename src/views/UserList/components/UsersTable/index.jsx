@@ -22,7 +22,7 @@ import Typography from '@material-ui/core/Typography';
 import TablePagination from '@material-ui/core/TablePagination';
 
 // Shared helpers
-import getInitials from 'helpers/getInitials';
+// import getInitials from 'helpers/getInitials';
 
 // Shared components
 import Portlet from 'components/Portlet';

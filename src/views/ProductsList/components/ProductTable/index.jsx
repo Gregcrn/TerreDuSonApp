@@ -40,7 +40,7 @@ class ProductTable extends Component {
     rowsPerPage: 20,
     page: 0,
     search: '',
-    quantity:'0'
+    quantity: null
   };
 
   handleSelectAll = event => {
@@ -57,7 +57,9 @@ class ProductTable extends Component {
     this.setState({ selectedProducts });
 
     onSelect(selectedProducts);
+    console.log(selectedProducts);
   };
+  
 
   handleSelectOne = (event, id) => {
     const { onSelect } = this.props;
@@ -76,11 +78,13 @@ class ProductTable extends Component {
         selectedProducts.slice(0, selectedIndex),
         selectedProducts.slice(selectedIndex + 1)
       );
+      
     }
 
     this.setState({ selectedProducts: newSelectedProduct });
 
     onSelect(newSelectedProduct);
+    
 
   };
   handleChangePage = (event, page) => {
@@ -97,7 +101,10 @@ class ProductTable extends Component {
   handleChangeItemsMenu = name => event => {
     this.setState({ [name]: event.target.value });
   };
-
+  handleadd = event => {
+    console.log(this.state.selectedProducts);
+  };
+  
 
 
   render() {
@@ -111,7 +118,8 @@ class ProductTable extends Component {
         return (product.produit.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1) || product.fournisseur.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
       }
     )
-    console.log(selectedProducts)
+    // console.log(selectedProducts)
+    
     
     return (
       <Portlet className={rootClassName}>
@@ -179,6 +187,7 @@ class ProductTable extends Component {
                             }
                             value="true"
                           />
+                          
                           <Link to="#">
                             <Typography
                               className={classes.nameText}
@@ -188,6 +197,7 @@ class ProductTable extends Component {
                             </Typography>
                           </Link>
                         </div>
+                        
                       </TableCell>
                       <TableCell className={classes.tableCell}>
                         {product.unit}
@@ -210,11 +220,21 @@ class ProductTable extends Component {
                           id="standard-with-placeholder"
                           label="Séléctionner"
                           margin="normal"
-                          placeholder={this.state.quantity}
+                          placeholder="Selectionner"
+                          value={this.state.quantity}
                         />
                       </TableCell>
                     </TableRow>
+                   
                   ))}
+                  <button
+                        
+                            color="primary"
+                            onClick={event =>
+                              this.handleadd(event)
+                            }
+                            value="true"
+                          >Ajouter au panier</button>
               </TableBody>
             </Table>
           </PerfectScrollbar>

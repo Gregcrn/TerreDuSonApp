@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 // Externals
 import PropTypes from 'prop-types';
 
@@ -19,9 +20,11 @@ import { getProducts } from 'services/products';
 // Custom components
 import ProductTable from './components/ProductTable';
 import ProductToolbar from './components/ProductToolbar';
+import SelectProducts from './components/SelectProducts';
 
 // Component styles
 import styles from './style';
+
 
 class UserList extends Component {
   signal = true;
@@ -110,13 +113,18 @@ class UserList extends Component {
   render() {
     const { classes } = this.props;
     const { selectedProducts } = this.state;
-    console.log(this.props.location)
+    // console.log(selectedProducts)
 
     return (
       <DashboardLayout title="Produits">
         <div className={classes.root}>
           <ProductToolbar selectedProducts={selectedProducts} />
           <div className={classes.content}>{this.renderProducts()}</div>
+          <div className={classes.content}>
+            <SelectProducts
+              products={this.renderProducts()}
+            />
+          </div>
         </div>
       </DashboardLayout>
     );
