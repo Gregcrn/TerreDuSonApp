@@ -158,6 +158,20 @@ class Sidebar extends Component {
               primary="Préférences"
             />
           </ListItem>
+          <ListItem
+            activeClassName={classes.activeListItem}
+            className={classes.listItem}
+            component={NavLink}
+            to="/basketlist"
+          >
+            <ListItemIcon className={classes.listItemIcon}>
+              <SettingsOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText
+              classes={{ primary: classes.listItemText }}
+              primary="Panier"
+            />
+          </ListItem>
         </List>
         <Divider className={classes.listDivider} />
         <List

@@ -12,6 +12,7 @@ import SignIn from './views/SignIn';
 import NotFound from './views/NotFound';
 import SubCatList from './views/SubCatList'
 import ProductsList from './views/ProductsList';
+import BasketList from './views/BasketList';
 
 export default class Routes extends Component {
   render() {
@@ -66,6 +67,11 @@ export default class Routes extends Component {
           component={ProductsList}
           exact
           path="/categories/:categories_id/:id"
+        />
+        <Route
+          component={BasketList}
+          exact
+          path="/basketlist"
         />
         <Route
           component={NotFound}
