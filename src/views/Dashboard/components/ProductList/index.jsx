@@ -155,7 +155,7 @@ class ProductList extends Component {
           {this.renderCategories()}
         </PortletContent>
         <PortletFooter className={classes.portletFooter}>
-          <Link to = "/produits">
+          <Link to = "/categories">
             <Button
               color="primary"
               size="small"
