@@ -1,102 +1,102 @@
-import React, { Component } from 'react';
-
-// Externals
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-
-// Material helpers
-import { withStyles } from '@material-ui/core/styles';
-
-// Material components
+import React from 'react';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import ArrowDownwardOutlinedIcon from '@material-ui/icons/ArrowDownwardOutlined';
-import ArrowUpwardOutlinedIcon from '@material-ui/icons/ArrowUpwardOutlined';
-import DeleteIcon from '@material-ui/icons/Delete';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
-// Shared components
-import SearchInput from 'components/SearchInput';
-import DisplayMode from 'components/DisplayMode';
+export default class FormDialog extends React.Component {
+  state = {
+    open: false,
+  };
 
-// Component styles
-import styles from './styles';
+  handleClickOpen = () => {
+    this.setState({ open: true });
+  };
 
-import AddUser from '../../../../utils/AddUser'
-
-class UsersToolbar extends Component {
-
-  async AddUser(){
-    let user = {
-      nom: "New2",
-      password: "123456",
-      email: "New2@test.com",
-      Role_utilisateur_id: 3
-    };
-    await AddUser(user); 
-  }
+  handleClose = () => {
+    this.setState({ open: false });
+  };
 
   render() {
-    const { classes, className, selectedUsers } = this.props;
-
-    const rootClassName = classNames(classes.root, className);
-
     return (
-      <div className={rootClassName}>
-        <div className={classes.row}>
-          <span className={classes.spacer} />
-          {selectedUsers.length > 0 && (
-            <IconButton
-              className={classes.deleteButton}
-              onClick={this.handleDeleteUsers}
-            >
-              <DeleteIcon />
-            </IconButton>
-          )}
-          <Button
-            className={classes.importButton}
-            size="small"
-            variant="outlined"
-          >
-            <ArrowDownwardOutlinedIcon className={classes.importIcon} /> Importer
-          </Button>
-          <Button
-            className={classes.exportButton}
-            size="small"
-            variant="outlined"
-          >
-            <ArrowUpwardOutlinedIcon className={classes.exportIcon} />
-            Exporter
-          </Button>
-          <Button
-            color="primary"
-            size="small"
-            variant="outlined"
-            onClick = { this.AddUser }
-          >
-            Ajouter un utilisateur
-          </Button>
-        </div>
-        <div className={classes.row}>
-          <SearchInput
-            className={classes.searchInput}
-            placeholder="Rechercher utlisateur"
-          />
-          <span className={classes.spacer} />
-          <DisplayMode mode="list" />
-        </div>
+      <div>
+        <Button variant="contained" color="secondary" onClick={this.handleClickOpen} >
+          Ajouter un utilisateur
+        </Button>
+        <Dialog
+          open={this.state.open}
+          onClose={this.handleClose}
+          aria-labelledby="form-dialog-title"
+        >
+          <DialogTitle id="form-dialog-title">AJOUTER UN UTILISATEUR</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Remplissez tous les champs ci-dessous
+            </DialogContentText>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="nom"
+              label="NOM"
+              type="text"
+              fullWidth
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="prenom"
+              label="PRENOM"
+              type="text"
+              fullWidth
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="password"
+              label="Mot de passe"
+              type="text"
+              fullWidth
+            />
+
+            <TextField
+              autoFocus
+              margin="dense"
+              id="email"
+              label="Em@il"
+              type="text"
+              fullWidth
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="role"
+              label="Rôle (Rc,Ra,Gest)"
+              type="text"
+              fullWidth
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="budget"
+              label="Budget €"
+              type="text"
+              fullWidth
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary">
+              Annuler
+            </Button>
+            <Button onClick={this.handleClose} color="primary">
+              Ajouter
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     );
   }
 }
 
-UsersToolbar.propTypes = {
-  className: PropTypes.string,
-  classes: PropTypes.object.isRequired,
-  selectedUsers: PropTypes.array
-};
-
-UsersToolbar.defaultProps = {
-  selectedUsers: []
-};
-
-export default withStyles(styles)(UsersToolbar);

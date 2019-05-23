@@ -9,22 +9,6 @@ export default theme => ({
   spacer: {
     flexGrow: 1
   },
-  deleteButton: {
-    color: theme.palette.danger.main,
-    marginRight: theme.spacing.unit
-  },
-  importButton: {
-    marginRight: theme.spacing.unit
-  },
-  importIcon: {
-    marginRight: theme.spacing.unit
-  },
-  exportButton: {
-    marginRight: theme.spacing.unit
-  },
-  exportIcon: {
-    marginRight: theme.spacing.unit
-  },
   searchInput: {
     marginRight: theme.spacing.unit
   }

@@ -13,6 +13,9 @@ import NotFound from './views/NotFound';
 import SubCatList from './views/SubCatList'
 import ProductsList from './views/ProductsList';
 import Order from './views/Order';
+import BasketList from './views/BasketList';
+import SelectProducts from './views/ProductsList/components/SelectProducts';
+import BasketTable from './views/BasketList/components/BasketTable';
 
 
 export default class Routes extends Component {
@@ -73,6 +76,11 @@ export default class Routes extends Component {
           component={Order}
           exact
           path="/commander"
+        />
+        <Route
+          component={BasketList}
+          exact
+          path="/basketlist"
         />
         <Route
           component={NotFound}
