@@ -27,5 +27,13 @@ export default theme => ({
   },
   searchInput: {
     marginRight: theme.spacing.unit
-  }
+  },
+  badge: {
+    top: '0%',
+    right: -2,
+    // The border color match the background color.
+    border: `1px solid ${
+      theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900]
+    }`,
+  },
 });

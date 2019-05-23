@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import  { Link }  from 'react-router-dom';
 
 // Externals
 import classNames from 'classnames';
@@ -100,14 +101,16 @@ class OrdersTable extends Component {
             title="Dernières commandes"
           />
           <PortletToolbar>
-            <Button
-              className={classes.newEntryButton}
-              color="primary"
-              size="small"
-              variant="outlined"
-            >
+            <Link to="/categories">
+              <Button
+                className={classes.newEntryButton}
+                color="primary"
+                size="small"
+                variant="outlined"
+              >
               Ajouter une commande
-            </Button>
+              </Button>
+            </Link>
           </PortletToolbar>
         </PortletHeader>
         <PerfectScrollbar>

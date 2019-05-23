@@ -19,7 +19,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/CloseOutlined';
 import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import SignoutIcon from '@material-ui/icons/ExitToAppOutlined';
-import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 
 // Shared services
 import { getNotifications } from 'services/notification';
@@ -139,7 +139,7 @@ class Topbar extends Component {
               className={classes.signOutButton}
               
             >
-              <ShoppingBasket/>
+              <AddShoppingCartIcon/>
             </IconButton>
           </Toolbar>
         </div>

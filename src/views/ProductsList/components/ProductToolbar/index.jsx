@@ -10,7 +10,8 @@ import { withStyles } from '@material-ui/core/styles';
 // Material components
 
 import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import Badge from '@material-ui/core/Badge';
 
 // Shared components
 
@@ -29,11 +30,14 @@ class ProductToolbar extends Component {
         <div className={classes.row}>
           <span className={classes.spacer} />
           {selectedProducts.length > 0 && (
-            <IconButton
-              className={classes.deleteButton}
-              onClick={this.handleDeleteUsers}
-            >
-              <DeleteIcon />
+            <IconButton aria-label="Cart">
+              <Badge
+                badgeContent={selectedProducts.length}
+                classes={{ badge: classes.badge }}
+                color="primary"
+              >
+                <ShoppingCartIcon />
+              </Badge>
             </IconButton>
           )}
         </div>
