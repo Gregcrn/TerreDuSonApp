@@ -12,6 +12,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
+
 // Shared layouts
 import DashboardLayout from 'layouts/Dashboard';
 
@@ -19,8 +20,8 @@ import DashboardLayout from 'layouts/Dashboard';
 import { getSubCategory } from 'services/subcategory';
 
 // Custom components
-import ProductsToolbar from './components/ProductsToolbar';
 import ProductCard from './components/ProductCard';
+import SearchInput from 'components/SearchInput'
 
 // Component styles
 import styles from './styles';
@@ -33,7 +34,8 @@ class ProductList extends Component {
     limit: 100,
     subCategories: [],
     subCategoriesTotal: 0,
-    error: null
+    error: null,
+    search:''
   };
 
   async getSubCategory(limit) {
@@ -72,9 +74,19 @@ class ProductList extends Component {
     this.signal = false;
   }
 
+  updateSearch(event){
+    this.setState({search: event.target.value.substr(0,20)})
+  }
+
   renderSubCategory() {
     const { classes } = this.props;
     const { isLoading, subCategories } = this.state;
+
+    const filteredSubCat = this.state.subCategories.filter(
+      (subcat) => {
+        return (subcat.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
+      }
+    )
 
     if (isLoading) {
       return (
@@ -94,24 +106,32 @@ class ProductList extends Component {
     const lastSegment = path_slice.pop() || path_slice.pop();
 
     return (
-      <Grid
-        container
-        spacing={24}
-      >
-        {subCategories.filter(subCat => subCat.categories_id === lastSegment ).map(subCategory => (
-          <Grid
-            item
-            key={subCategory.id}
-            lg={4}
-            md={6}
-            xs={12}
-          >
-            <Link to="#">
-              <ProductCard subCategory={subCategory} />
-            </Link>
-          </Grid>
-        ))}
-      </Grid>
+      <div>
+        <SearchInput
+          className={classes.searchInput}
+          onChange={this.updateSearch.bind(this)}
+          placeholder="Rechercher une sous catégorie"
+          value={this.state.search}
+        />
+        <Grid
+          container
+          spacing={24}
+        >
+          {filteredSubCat.filter(subCat => subCat.categories_id === lastSegment ).map(subCategory => (
+            <Grid
+              item
+              key={subCategory.id}
+              lg={4}
+              md={6}
+              xs={12}
+            >
+              <Link to="#">
+                <ProductCard subCategory={subCategory} />
+              </Link>
+            </Grid>
+          ))}
+        </Grid>
+      </div>
     );
   }
 
@@ -121,7 +141,6 @@ class ProductList extends Component {
     return (
       <DashboardLayout title="Sous Categories">
         <div className={classes.root}>
-          <ProductsToolbar />
           <div className={classes.content}>{this.renderSubCategory()}</div>
         </div>
       </DashboardLayout>

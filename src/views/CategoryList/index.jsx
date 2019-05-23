@@ -19,8 +19,8 @@ import DashboardLayout from 'layouts/Dashboard';
 import { getCategory } from 'services/category';
 
 // Custom components
-import ProductsToolbar from './components/ProductsToolbar';
 import ProductCard from './components/ProductCard';
+import SearchInput from 'components/SearchInput';
 
 // Component styles
 import styles from './styles';
@@ -33,7 +33,8 @@ class ProductList extends Component {
     limit: 100,
     categories: [],
     categoriesTotal: 0,
-    error: null
+    error: null, 
+    search:''
   };
 
   async getCategory(limit) {
@@ -66,15 +67,25 @@ class ProductList extends Component {
     const { limit } = this.state;
 
     this.getCategory(limit);
+    
   }
 
   componentWillUnmount() {
     this.signal = false;
   }
-
+  updateSearch(event) {
+    this.setState({search : event.target.value.substr(0, 20)})
+  }
   renderCategories() {
     const { classes } = this.props;
     const { isLoading, categories } = this.state;
+
+    const filteredCat = this.state.categories.filter(
+      (cat) => {
+        return (cat.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
+      }
+    )
+    
 
     if (isLoading) {
       return (
@@ -90,24 +101,32 @@ class ProductList extends Component {
       );
     }
     return (
-      <Grid
-        container
-        spacing={24}
-      >
-        {categories.map(category => (
-          <Grid
-            item
-            key={category.id}
-            lg={4}
-            md={6}
-            xs={12}
-          >
-            <Link to="#">
-              <ProductCard category={category} />
-            </Link>
-          </Grid>
-        ))}
-      </Grid>
+      <div>
+        <SearchInput
+          className={classes.searchInput}
+          onChange={this.updateSearch.bind(this)}
+          placeholder="Rechercher un produit"
+          value={this.state.search}
+        />
+        <Grid
+          container
+          spacing={24}
+        >
+          {filteredCat.map(category => (
+            <Grid
+              item
+              key={category.id}
+              lg={4}
+              md={6}
+              xs={12}
+            >
+              <Link to="#">
+                <ProductCard category={category} />
+              </Link>
+            </Grid>
+          ))}
+        </Grid>
+      </div>
     );
   }
 
@@ -117,7 +136,6 @@ class ProductList extends Component {
     return (
       <DashboardLayout title="Categories">
         <div className={classes.root}>
-          <ProductsToolbar />
           <div className={classes.content}>{this.renderCategories()}</div>
         </div>
       </DashboardLayout>

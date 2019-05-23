@@ -16,5 +16,9 @@ export default theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end'
+  },
+  searchInput:{
+    marginBottom: '24px',
+    width: '32%'
   }
 });

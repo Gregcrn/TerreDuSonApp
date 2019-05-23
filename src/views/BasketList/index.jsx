@@ -101,7 +101,6 @@ class UserList extends Component {
   render() {
     const { classes } = this.props;
     const { selectedProducts } = this.state;
-    console.log(this.props.location)
 
     return (
       <DashboardLayout title="Panier">
@@ -110,7 +109,7 @@ class UserList extends Component {
           <BasketToolbar selectedProducts={selectedProducts} />
           
           <Fab aria-label="Delete" size="small" className={classes.fab}>
-          <DeleteIcon />
+            <DeleteIcon />
           </Fab>
           
           <Button variant="contained" color="primary" className={classes.button}>

@@ -21,6 +21,7 @@ import Typography from '@material-ui/core/Typography';
 import TablePagination from '@material-ui/core/TablePagination';
 import SearchInput from 'components/SearchInput';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button/index';
 
 // Shared helpers
 
@@ -226,14 +227,14 @@ class ProductTable extends Component {
                     </TableRow>
                    
                   ))}
-                <button
-                        
+                <Button
                   color="primary"
                   onClick={event =>
                     this.handleadd(event)
                   }
                   value="true"
-                >Ajouter au panier</button>
+                >Ajouter au panier
+                </Button>
               </TableBody>
             </Table>
           </PerfectScrollbar>
