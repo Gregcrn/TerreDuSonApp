@@ -11,5 +11,12 @@ export default theme => ({
   },
   searchInput: {
     marginRight: theme.spacing.unit
-  }
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing.unit,
+  },
 });

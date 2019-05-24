@@ -23,5 +23,9 @@ export default theme => ({
     marginLeft: theme.spacing.unit * 2,
     fontWeight: 500,
     cursor: 'pointer'
+  },
+  searchInput: {
+    marginBottom: '2rem',
+    width: '30%'
   }
 });

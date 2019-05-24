@@ -28,7 +28,7 @@ class UserList extends Component {
 
   state = {
     isLoading: false,
-    limit: 10,
+    limit: 100,
     users: [],
     selectedUsers: [],
     error: null
