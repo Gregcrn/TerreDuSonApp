@@ -50,16 +50,15 @@ class Password extends Component {
       >
         <PortletHeader>
           <PortletLabel
-            subtitle="Update password"
-            title="Password"
+            title="Mot de passe"
           />
         </PortletHeader>
         <PortletContent>
           <form className={classes.form}>
             <TextField
               className={classes.textField}
-              label="Password"
-              name="password"
+              label="Mot de passe"
+              name="mot de passe"
               onChange={event =>
                 this.handleFieldChange('password', event.target.value)
               }
@@ -69,7 +68,7 @@ class Password extends Component {
             />
             <TextField
               className={classes.textField}
-              label="Confirm password"
+              label="Confimer mot de passe"
               name="confirm"
               onChange={event =>
                 this.handleFieldChange('confirm', event.target.value)
@@ -85,7 +84,7 @@ class Password extends Component {
             color="primary"
             variant="outlined"
           >
-            Update
+            Mettre à jour
           </Button>
         </PortletFooter>
       </Portlet>

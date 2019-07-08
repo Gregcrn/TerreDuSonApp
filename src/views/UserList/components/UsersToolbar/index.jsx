@@ -24,10 +24,57 @@ import AddUser from '../../../../utils/AddUser'
 
 // Component styles
 import styles from './styles';
+import { Slide } from '@material-ui/core';
 
+
+function Transition(props) {
+  return <Slide 
+    direction="up"
+    {...props}
+  />;
+}
+
+// eslint-disable-next-line react/no-multi-comp
+class AlertValidate extends React.Component {
+  state = {
+    open: true,
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
+  render() {
+    return (
+      <div>
+        <Dialog
+          aria-describedby="alert-dialog-slide-description"
+          aria-labelledby="alert-dialog-slide-title"
+          keepMounted
+          onClose={this.handleClose}
+          open={this.state.open}
+          // eslint-disable-next-line react/jsx-sort-props
+          TransitionComponent={Transition}
+        >
+          <DialogTitle id="alert-dialog-slide-title">
+            {'Ajout d\'utilisateur enregistré'}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-slide-description">
+              L'ajout d'un nouvel utilisateur à bien été pris en compte.
+            </DialogContentText>
+          </DialogContent>
+        </Dialog>
+      </div>
+    );
+  }
+}
+
+// eslint-disable-next-line react/no-multi-comp
 class FormDialog extends React.Component {
   state = {
     open: false,
+    validate: null,
     user: {
       nom: '',
       password: '',
@@ -39,10 +86,24 @@ class FormDialog extends React.Component {
         3: 3
       }
     }
-  };
-  AddUser = async () => {
-    await AddUser(this.state.user);
   }
+
+  AddUser = async () => {
+    try {
+      await AddUser(this.state.user);
+      this.setState({
+        open:false,
+        validate:true
+      })
+    } catch (error) {
+      this.setState({
+        open: true,
+        validate: false
+      })
+    }
+  }
+    
+  
   handleClickOpen = () => {
     this.setState({ open: true }); 
   };
@@ -60,88 +121,91 @@ class FormDialog extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
-        <Button
-          color="secondary"
-          onClick={this.handleClickOpen}
-          variant="contained"
-        >
+      <React.Fragment>
+        <div>
+          <Button
+            color="secondary"
+            onClick={this.handleClickOpen}
+            variant="contained"
+          >
           Ajouter un utilisateur
-        </Button>
-        <Dialog
-          aria-labelledby="form-dialog-title"
-          onClose={this.handleClose}
-          open={this.state.open}
-        >
-          <DialogTitle id="form-dialog-title">AJOUTER UN UTILISATEUR</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
+          </Button>
+          <Dialog
+            aria-labelledby="form-dialog-title"
+            onClose={this.handleClose}
+            open={this.state.open}
+          >
+            <DialogTitle id="form-dialog-title">AJOUTER UN UTILISATEUR</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
               Remplissez tous les champs ci-dessous
-            </DialogContentText>
-            <TextField
-              autoFocus
-              fullWidth
-              id="nom"
-              label="Nom et prenom"
-              margin="dense"
-              onChange={(event) => this.userFieldChange('nom', event.target.value)}
-              type="text"
-              value={this.state.user.nom}
-            />
-            <TextField
-              autoFocus
-              fullWidth
-              id="password"
-              label="Mot de passe"
-              margin="dense"
-              onChange={(event) => this.userFieldChange('password', event.target.value)}
-              type="text"
-              value={this.state.user.password}
-            />
+              </DialogContentText>
+              <TextField
+                autoFocus
+                fullWidth
+                id="nom"
+                label="Nom et prenom"
+                margin="dense"
+                onChange={(event) => this.userFieldChange('nom', event.target.value)}
+                type="text"
+                value={this.state.user.nom}
+              />
+              <TextField
+                autoFocus
+                fullWidth
+                id="password"
+                label="Mot de passe"
+                margin="dense"
+                onChange={(event) => this.userFieldChange('password', event.target.value)}
+                type="text"
+                value={this.state.user.password}
+              />
 
-            <TextField
-              autoFocus
-              fullWidth
-              id="email"
-              label="Em@il"
-              margin="dense"
-              onChange={(event) => this.userFieldChange('email', event.target.value)}
-              type="text"
-              value={this.state.user.email}
-            />
-            <FormControl className={classes.formControl}>
-              <InputLabel>Rôle</InputLabel>
-              <NativeSelect
-                input={
-                  <Input
-                    id="native-helper"
-                    name="role"
-                  />}
-                onChange={(event) => this.userFieldChange('Role_utilisateur_id', event.target.value)}
+              <TextField
+                autoFocus
+                fullWidth
+                id="email"
+                label="Em@il"
+                margin="dense"
+                onChange={(event) => this.userFieldChange('email', event.target.value)}
+                type="text"
+                value={this.state.user.email}
+              />
+              <FormControl className={classes.formControl}>
+                <InputLabel>Rôle</InputLabel>
+                <NativeSelect
+                  input={
+                    <Input
+                      id="native-helper"
+                      name="role"
+                    />}
+                  onChange={(event) => this.userFieldChange('Role_utilisateur_id', event.target.value)}
+                >
+                  <option value="" />
+                  <option value={this.state.user.Role_utilisateur_id[1]}>RC</option>
+                  <option value={this.state.user.Role_utilisateur_id[2]}>RA</option>
+                  <option value={this.state.user.Role_utilisateur_id[3]}>Gestionnaire</option>
+                </NativeSelect>
+              </FormControl>
+            </DialogContent>
+            <DialogActions>
+              <Button
+                color="primary"
+                onClick={this.handleClose}
               >
-                <option value="" />
-                <option value={this.state.user.Role_utilisateur_id[1]}>RC</option>
-                <option value={this.state.user.Role_utilisateur_id[2]}>RA</option>
-                <option value={this.state.user.Role_utilisateur_id[3]}>Gestionnaire</option>
-              </NativeSelect>
-            </FormControl>
-          </DialogContent>
-          <DialogActions>
-            <Button
-              color="primary"
-              onClick={this.handleClose}
-            >
               Annuler
-            </Button>
-            <Button
-              color="primary"
-              onClick={this.AddUser}
-            >
+              </Button>
+              <Button
+                color="primary"
+                onClick={this.AddUser}
+              >
               Ajouter
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </div>
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </div>
+        {this.state.validate ? <AlertValidate/> : null}
+      </React.Fragment>
     );
   }
 }

@@ -15,6 +15,7 @@ import DashboardLayout from 'layouts/Dashboard';
 // Custom components
 import AccountProfile from './components/AccountProfile';
 import AccountDetails from './components/AccountDetails';
+import Password from './components/Password';
 
 // Component styles
 const styles = theme => ({
@@ -44,6 +45,7 @@ class Account extends Component {
               xs={12}
             >
               <AccountProfile />
+              <Password/>
             </Grid>
             <Grid
               item

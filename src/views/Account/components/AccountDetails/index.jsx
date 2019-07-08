@@ -63,6 +63,7 @@ class AlertDialogSlide extends React.Component {
           keepMounted
           onClose={this.handleClose}
           open={this.state.open}
+          // eslint-disable-next-line react/jsx-sort-props
           TransitionComponent={Transition}
         >
           <DialogTitle id="alert-dialog-slide-title">
@@ -78,20 +79,7 @@ class AlertDialogSlide extends React.Component {
     );
   }
 }
-const states = [
-  {
-    value: 'alabama',
-    label: 'Alabama'
-  },
-  {
-    value: 'new-york',
-    label: 'New York'
-  },
-  {
-    value: 'san-francisco',
-    label: 'San Francisco'
-  }
-];
+
 
 // eslint-disable-next-line react/no-multi-comp
 class Account extends Component {
@@ -105,9 +93,11 @@ class Account extends Component {
   };
   render() {
     const { classes, className, ...rest } = this.props;
-    const { firstName, lastName, phone, state, country, email } = this.state;
+    const { firstName, lastName, phone, email } = this.state;
     const rootClassName = classNames(classes.root, className);
 
+
+    // Add Value property for Texfield later
     return (
       <Portlet
         {...rest}
@@ -115,7 +105,7 @@ class Account extends Component {
       >
         <PortletHeader>
           <PortletLabel
-            subtitle="Les informations peuvent être modifiés"
+            subtitle="Les informations peuvent être modifiées"
             title="Profil"
           />
         </PortletHeader>
@@ -130,16 +120,16 @@ class Account extends Component {
                 helperText="Merci de préciser le prénom"
                 label="Prénom"
                 margin="dense"
+                placeholder={firstName}
                 required
-                value={firstName}
                 variant="outlined"
               />
               <TextField
                 className={classes.textField}
                 label="Nom"
                 margin="dense"
+                placeholder={lastName}
                 required
-                value={lastName}
                 variant="outlined"
               />
             </div>
@@ -148,46 +138,15 @@ class Account extends Component {
                 className={classes.textField}
                 label="Adresse mail"
                 margin="dense"
+                placeholdr={email}
                 required
-                value={email}
                 variant="outlined"
               />
               <TextField
                 className={classes.textField}
                 label="Numéro de téléphone"
                 margin="dense"
-                type="number"
-                value={phone}
-                variant="outlined"
-              />
-            </div>
-            <div className={classes.field}>
-              <TextField
-                className={classes.textField}
-                label="Select State"
-                margin="dense"
-                onChange={this.handleChange}
-                required
-                select
-                SelectProps={{native: true}}
-                value={state}
-                variant="outlined"
-              >
-                {states.map(option => (
-                  <option
-                    key={option.value}
-                    value={option.value}
-                  >
-                    {option.label}
-                  </option>
-                ))}
-              </TextField>
-              <TextField
-                className={classes.textField}
-                label="Country"
-                margin="dense"
-                required
-                value={country}
+                placeholder={phone}
                 variant="outlined"
               />
             </div>
