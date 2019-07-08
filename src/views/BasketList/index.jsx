@@ -20,13 +20,18 @@ import { getProducts } from 'services/products';
 import BasketTable from './components/BasketTable';
 import BasketToolbar from './components/BasketToolbar';
 import Button from '@material-ui/core/Button';
-import DeleteIcon from '@material-ui/icons/Delete';
-import Fab from '@material-ui/core/Fab';
+import SearchInput from '../../components/SearchInput/index.jsx';
+
 
 
 // Component styles
 import styles from './styles';
 
+let counter = 0;
+function createData(name, calories, fat, carbs, protein) {
+  counter += 1;
+  return { id: counter, name, calories, fat, carbs, protein };
+}
 class UserList extends Component {
   signal = true;
 
@@ -35,7 +40,22 @@ class UserList extends Component {
     limit: 10,
     products: [],
     selectedProducts: [],
-    error: null
+    error: null,
+    data: [
+      createData('HelloWorld', 305, 3.7, 67, 4.3),
+      createData('Donut', 452, 25.0, 51, 4.9),
+      createData('Eclair', 262, 16.0, 24, 6.0),
+      createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+      createData('Gingerbread', 356, 16.0, 49, 3.9),
+      createData('Honeycomb', 408, 3.2, 87, 6.5),
+      createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+      createData('Jelly Bean', 375, 0.0, 94, 0.0),
+      createData('KitKat', 518, 26.0, 65, 7.0),
+      createData('Lollipop', 392, 0.2, 98, 0.0),
+      createData('Marshmallow', 318, 0, 81, 2.0),
+      createData('Nougat', 360, 19.0, 9, 37.0),
+      createData('Oreo', 437, 18.0, 63, 4.0),
+    ],
   };
 
   async getProducts() {
@@ -70,12 +90,16 @@ class UserList extends Component {
   componentWillUnmount() {
     this.signal = false;
   }
+  updateSearch(event) {
+    this.setState({search : event.target.value.substr(0, 20)})
+  }
 
   handleSelect = selectedProducts => {
     this.setState({ selectedProducts });
   };
 
   renderProducts() {
+    
     const { classes } = this.props;
     const { isLoading, products, error } = this.state;
 
@@ -86,13 +110,18 @@ class UserList extends Component {
       product.sous_categorie_id === lastSegment 
     )
 
+    //  const filteredPan = this.state.data.filter(
+    //    (cat) => {
+    //     return (cat.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
+    //    }
+    //  )
+
     
 
     return (
       <BasketTable
-        //
         onSelect={this.handleSelect}
-        products={subcatProd}
+        data={this.state.data}
       />
      
     );
@@ -108,13 +137,20 @@ class UserList extends Component {
         
           <BasketToolbar selectedProducts={selectedProducts} />
           
-          <Fab aria-label="Delete" size="small" className={classes.fab}>
-            <DeleteIcon />
-          </Fab>
-          
+          <div className={classes.containerBar}>
+          <SearchInput
+          className={classes.searchInput}
+          onChange={this.updateSearch.bind(this)}
+          placeholder="Rechercher un produit"
+          value={this.state.search}
+          />
+
+
           <Button variant="contained" color="primary" className={classes.button}>
             Valider
           </Button>
+</div>
+
           <div className={classes.content}>{this.renderProducts()}</div>
         </div>
       </DashboardLayout>

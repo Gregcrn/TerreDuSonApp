@@ -97,7 +97,7 @@ class UserList extends Component {
     }
 
     if (subcatProd.length === 0) {
-      return <Typography variant="h6">There are no users</Typography>;
+      return <Typography variant="h6">Aucun produit disponible</Typography>;
     }
 
     return (
