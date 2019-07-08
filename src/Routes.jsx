@@ -6,7 +6,6 @@ import Dashboard from './views/Dashboard';
 import CategoryList from './views/CategoryList';
 import UserList from './views/UserList';
 import Account from './views/Account';
-import Settings from './views/Settings';
 import SignUp from './views/SignUp';
 import SignIn from './views/SignIn';
 import NotFound from './views/NotFound';
@@ -44,11 +43,6 @@ export default class Routes extends Component {
           component={Account}
           exact
           path="/profil"
-        />
-        <Route
-          component={Settings}
-          exact
-          path="/preferences"
         />
         <Route
           component={SignUp}

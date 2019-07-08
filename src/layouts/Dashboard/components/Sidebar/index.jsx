@@ -23,7 +23,6 @@ import ShoppingIcon from '@material-ui/icons/ShoppingBasketOutlined';
 import LockIcon from '@material-ui/icons/LockOpenOutlined';
 import InfoIcon from '@material-ui/icons/InfoOutlined';
 import AccountBoxOutlinedIcon from '@material-ui/icons/AccountBoxOutlined';
-import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 // Component styles
 import styles from './styles';
@@ -156,20 +155,6 @@ class Sidebar extends Component {
             <ListItemText
               classes={{ primary: classes.listItemText }}
               primary="Profil"
-            />
-          </ListItem>
-          <ListItem
-            activeClassName={classes.activeListItem}
-            className={classes.listItem}
-            component={NavLink}
-            to="/preferences"
-          >
-            <ListItemIcon className={classes.listItemIcon}>
-              <SettingsOutlinedIcon />
-            </ListItemIcon>
-            <ListItemText
-              classes={{ primary: classes.listItemText }}
-              primary="Préférences"
             />
           </ListItem>
         </List>
