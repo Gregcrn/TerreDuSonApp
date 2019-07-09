@@ -151,7 +151,6 @@ class SignIn extends Component {
     );
   }
 }
-export default withRouter(Login);
 
 SignIn.propTypes = {
   className: PropTypes.string,
@@ -159,7 +158,7 @@ SignIn.propTypes = {
   history: PropTypes.object.isRequired
 };
 
-export default (
+export default(
   withRouter,
   withStyles(styles)
 )(SignIn);
