@@ -12,6 +12,9 @@ import Typography from '@material-ui/core/Typography';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import PeopleOutlinedIcon from '@material-ui/icons/PeopleOutlined';
 
+//service
+import { getUsers } from 'services/user/index'
+
 // Shared components
 import Paper from 'components/Paper';
 
@@ -19,11 +22,34 @@ import Paper from 'components/Paper';
 import styles from './styles';
 
 class Users extends Component {
+  state = {
+    nbUsers: 0,
+    error: null
+  }
+
+  async getUsers() {
+    try {
+      const { users } = await getUsers(10000);
+      console.log(users)
+      this.setState({
+        nbUsers: users.length
+      })
+      
+    } catch (error) {
+      this.setState({
+        error
+      });
+    }
+  }
+
+  componentDidMount() {
+    this.getUsers();
+  }
+
   render() {
     const { classes, className, ...rest } = this.props;
-
     const rootClassName = classNames(classes.root, className);
-
+    console.log(this.state.nbUsers)
     return (
       <Paper
         {...rest}
@@ -37,13 +63,13 @@ class Users extends Component {
             Nombre d'utilisateurs
           </Typography>
           <div className={classes.details}>
-            <Typography variant="h3">46</Typography>
+            <Typography variant="h3">{this.state.nbUsers}</Typography>
             <Typography
               className={classes.difference}
               variant="body2"
             >
               <ArrowDropUpIcon />
-              16%
+              100%
             </Typography>
           </div>
         </div>

@@ -79,6 +79,7 @@ class UserList extends Component {
 
     const path_slice = this.props.location.pathname.split('/');
     const lastSegment = path_slice.pop() || path_slice.pop();
+    // console.log(this.props.match.params.id)
 
     const subcatProd = products.filter((product) =>
       product.sous_categorie_id === lastSegment 

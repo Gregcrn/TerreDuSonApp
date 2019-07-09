@@ -95,6 +95,8 @@ class UsersTable extends Component {
   render() {
     const { classes, className, users } = this.props;
     const { activeTab, selectedUsers, rowsPerPage, page } = this.state;
+    // console.log(activeTab);
+    
 
     const filteredUser  = this.props.users.filter(
       (user) => {
