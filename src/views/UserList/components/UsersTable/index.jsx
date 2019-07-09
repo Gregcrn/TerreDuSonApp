@@ -171,12 +171,6 @@ class UsersTable extends Component {
                               }
                               value="true"
                             />
-                            {/* <Avatar
-                            className={classes.avatar}
-                            src={user.avatarUrl}
-                          >
-                            {getInitials(user.name)}
-                          </Avatar> */}
                             <Link to="#">
                               <Typography
                                 className={classes.nameText}

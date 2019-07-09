@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 // Externals
 import PropTypes from 'prop-types';
 
@@ -13,9 +12,6 @@ import Typography from '@material-ui/core/Typography';
 // Shared layouts
 import DashboardLayout from 'layouts/Dashboard';
 
-// Shared services
-import { getUsers } from 'services/user';
-
 // Custom components
 import UsersToolbar from './components/UsersToolbar';
 import UsersTable from './components/UsersTable';
@@ -23,29 +19,40 @@ import UsersTable from './components/UsersTable';
 // Component styles
 import styles from './style';
 
-class UserList extends Component {
-  signal = true;
+// Config Firebase
+import config from '../../config/FirebaseConfig'
 
+class UserList extends Component {
+
+  signal = true;
   state = {
-    isLoading: false,
+    isLoading: true,
     limit: 100,
     users: [],
     selectedUsers: [],
-    error: null
+    error: null,
   };
 
+  componentWillMount(){
+    this.getUsers()
+  }
+  getUserData = () => {
+    setTimeout(() => {
+      const ref = config.database().ref('utilisateurs')
+      ref.on('value', snapshot => {
+        this.setState({
+          users: snapshot.val(),
+        })
+      })
+    }, 700)
+  }
   async getUsers() {
     try {
       this.setState({ isLoading: true });
-
-      const { limit } = this.state;
-
-      const { users } = await getUsers(limit);
-
+      await this.getUserData();
       if (this.signal) {
         this.setState({
           isLoading: false,
-          users
         });
       }
     } catch (error) {
@@ -60,7 +67,7 @@ class UserList extends Component {
 
   componentDidMount() {
     this.signal = true;
-    this.getUsers();
+    this.setState({isLoading:true})
   }
 
   componentWillUnmount() {
@@ -93,7 +100,6 @@ class UserList extends Component {
 
     return (
       <UsersTable
-        //
         onSelect={this.handleSelect}
         users={users}
       />
@@ -103,7 +109,6 @@ class UserList extends Component {
   render() {
     const { classes } = this.props;
     const { selectedUsers } = this.state;
-
     return (
       <DashboardLayout title="Utilisateurs">
         <div className={classes.root}>

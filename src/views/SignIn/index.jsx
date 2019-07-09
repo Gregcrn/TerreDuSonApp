@@ -41,6 +41,7 @@ class SignIn extends Component {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
+      // eslint-disable-next-line no-unused-vars
       .then((user) => {
         this.props.history.push('/');
       })
