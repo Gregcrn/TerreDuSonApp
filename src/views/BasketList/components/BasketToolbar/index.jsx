@@ -15,6 +15,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 // Shared components
 
 
+
 // Component styles
 import styles from './styles';
 
@@ -24,9 +25,12 @@ class BasketToolbar extends Component {
 
     const rootClassName = classNames(classes.root, className);
 
+    
+
     return (
       <div className={rootClassName}>
         <div className={classes.row}>
+         
           <span className={classes.spacer} />
           {selectedUsers.length > 0 && (
             <IconButton

@@ -22,6 +22,9 @@ import './assets/scss/index.scss';
 // Routes
 import Routes from './Routes';
 
+//firebase config
+import fire from './config/Fire'
+
 // Browser history
 const browserHistory = createBrowserHistory();
 

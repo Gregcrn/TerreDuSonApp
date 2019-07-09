@@ -112,7 +112,7 @@ class ProductTable extends Component {
     const { activeTab, selectedProducts, rowsPerPage, page } = this.state;
 
     const rootClassName = classNames(classes.root, className);
-
+    console.log(selectedProducts);
     const filteredProduct = this.props.products.filter(
       (product) => {
         return (product.produit.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1) || product.fournisseur.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
@@ -169,7 +169,7 @@ class ProductTable extends Component {
 
                     return product;
                   })
-                  .slice(0, rowsPerPage)
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map(product => (
                     <TableRow
                       className={classes.tableRow}

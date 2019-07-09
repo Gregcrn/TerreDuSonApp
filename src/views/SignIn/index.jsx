@@ -151,6 +151,7 @@ class SignIn extends Component {
     );
   }
 }
+export default withRouter(Login);
 
 SignIn.propTypes = {
   className: PropTypes.string,

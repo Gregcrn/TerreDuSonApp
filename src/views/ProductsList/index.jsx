@@ -79,6 +79,7 @@ class UserList extends Component {
 
     const path_slice = this.props.location.pathname.split('/');
     const lastSegment = path_slice.pop() || path_slice.pop();
+    // console.log(this.props.match.params.id)
 
     const subcatProd = products.filter((product) =>
       product.sous_categorie_id === lastSegment 
@@ -97,7 +98,7 @@ class UserList extends Component {
     }
 
     if (subcatProd.length === 0) {
-      return <Typography variant="h6">There are no users</Typography>;
+      return <Typography variant="h6">Aucun produit disponible</Typography>;
     }
 
     return (

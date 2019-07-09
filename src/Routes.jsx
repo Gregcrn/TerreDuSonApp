@@ -15,20 +15,30 @@ import Order from './views/Order';
 import BasketList from './views/BasketList';
 
 
+
 export default class Routes extends Component {
   render() {
+
     return (
       <Switch>
         <Redirect
           exact
           from="/"
           to="/tableau-de-bord"
-        />
-        <Route
+          />
+        {/* {this.state.user ? ( */}
+          <Route
           component={Dashboard}
           exact
           path="/tableau-de-bord"
-        />
+          />
+          {/* ) : ( */}
+          <Route
+            component={SignIn}
+            exact
+            path="/sign-in"
+          /> 
+          {/* )} */}
         <Route
           component={UserList}
           exact
@@ -48,11 +58,6 @@ export default class Routes extends Component {
           component={SignUp}
           exact
           path="/sign-up"
-        />
-        <Route
-          component={SignIn}
-          exact
-          path="/sign-in"
         />
         <Route
           component={SubCatList}

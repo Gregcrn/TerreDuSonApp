@@ -1,3 +1,5 @@
+import { isWidthDown } from "@material-ui/core/withWidth";
+
 export default theme => ({
     root: {
       padding: theme.spacing.unit * 3
@@ -11,9 +13,9 @@ export default theme => ({
       display: 'flex',
       justifyContent: 'center'
     },
-    button: {
-      marginLeft: theme.spacing.unit * 120,
-    },
+    // button: {
+    //   marginLeft: theme.spacing.unit * 127,
+    // },
     input: {
       display: 'none',
     },
@@ -23,5 +25,9 @@ export default theme => ({
     extendedIcon: {
       marginRight: theme.spacing.unit,
     },
+    containerBar:{
+      display: 'flex',
+      justifyContent:'space-between'
+    }
   });
   
