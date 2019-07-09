@@ -30,7 +30,6 @@ class Users extends Component {
   async getUsers() {
     try {
       const { users } = await getUsers(10000);
-      console.log(users)
       this.setState({
         nbUsers: users.length
       })
@@ -49,7 +48,6 @@ class Users extends Component {
   render() {
     const { classes, className, ...rest } = this.props;
     const rootClassName = classNames(classes.root, className);
-    console.log(this.state.nbUsers)
     return (
       <Paper
         {...rest}

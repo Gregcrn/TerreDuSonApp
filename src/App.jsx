@@ -19,6 +19,9 @@ import './assets/scss/index.scss';
 // Routes
 import Routes from './Routes';
 
+//firebase config
+import fire from './config/Fire'
+
 // Browser history
 const browserHistory = createBrowserHistory();
 
@@ -26,6 +29,31 @@ const browserHistory = createBrowserHistory();
 Chart.helpers.extend(Chart.elements.Rectangle.prototype, { draw });
 
 export default class App extends Component {
+  constructor() {
+    super();
+    this.state = ({
+      user: 1,
+    });
+    this.authListener = this.authListener.bind(this);
+  }
+
+  componentDidMount() {
+    this.authListener();
+  }
+
+  authListener(){
+    fire.auth().onAuthStateChanged((user) => {
+      console.log(user);
+      if (user) {
+        this.setState({ user });
+        localStorage.setItem('user', user.uid);
+      } else {
+        this.setState({ user: null });
+        localStorage.removeItem('user');
+      }
+    });
+  }
+
   render() {
     return (
       <MuiThemeProvider theme={theme}>
