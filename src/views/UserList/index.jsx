@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from 'react';
 // Externals
 import PropTypes from 'prop-types';
@@ -21,6 +22,7 @@ import styles from './style';
 
 // Config Firebase
 import config from '../../config/FirebaseConfig'
+import { O2A } from 'object-to-array-convert';
 
 class UserList extends Component {
 
@@ -36,19 +38,19 @@ class UserList extends Component {
   componentWillMount(){
     this.getUsers()
   }
+
   getUserData = () => {
-    setTimeout(() => {
-      const ref = config.database().ref('utilisateurs')
-      ref.on('value', snapshot => {
-        this.setState({
-          users: snapshot.val(),
-        })
+    const ref = config.database().ref('users')
+    ref.on('value', snapshot => {
+      this.setState({
+        users:  O2A(snapshot),
       })
-    }, 700)
+    })
   }
+
   async getUsers() {
     try {
-      this.setState({ isLoading: true });
+      this.setState({ isLoading: false });
       await this.getUserData();
       if (this.signal) {
         this.setState({
@@ -95,7 +97,7 @@ class UserList extends Component {
     }
 
     if (users.length === 0) {
-      return <Typography variant="h6">There are no users</Typography>;
+      return <Typography variant="h6">Aucun utilisateur inscrit pour le moment </Typography>;
     }
 
     return (
@@ -109,6 +111,7 @@ class UserList extends Component {
   render() {
     const { classes } = this.props;
     const { selectedUsers } = this.state;
+    console.log(this.state.users)
     return (
       <DashboardLayout title="Utilisateurs">
         <div className={classes.root}>

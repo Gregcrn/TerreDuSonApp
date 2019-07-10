@@ -14,18 +14,17 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
+
 
 //Data
-import AddUser from '../../../../utils/AddUser'
+// import AddUser from '../../../../utils/AddUser'
 
 // Component styles
 import styles from './styles';
 import { Slide } from '@material-ui/core';
 
+//Firebase
+import Config from '../../../../config/FirebaseConfig'
 
 function Transition(props) {
   return <Slide 
@@ -74,35 +73,28 @@ class AlertValidate extends React.Component {
 class FormDialog extends React.Component {
   state = {
     open: false,
-    validate: null,
-    user: {
+    validate: false,
+    id:0,
+    user: [{
       nom: '',
-      password: '',
-      email: '',
-      Role_utilisateur_id: {
-        0:'Rôle',
-        1: 1,
-        2: 2,
-        3: 3
-      }
+      email:'',
+      role:''
     }
+    ]
   }
 
-  AddUser = async () => {
-    try {
-      await AddUser(this.state.user);
-      this.setState({
-        open:false,
-        validate:true
-      })
-    } catch (error) {
-      this.setState({
-        open: true,
-        validate: false
-      })
-    }
+
+  writeUserData = () => {
+    Config.database().ref('users').push({
+      nom: this.state.user.nom,
+      email: this.state.user.email,
+      role: this.state.user.role
+    });
+    this.setState({
+      validate: !this.state.validate,
+      open: false
+    })
   }
-    
   
   handleClickOpen = () => {
     this.setState({ open: true }); 
@@ -119,7 +111,6 @@ class FormDialog extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
     return (
       <React.Fragment>
         <div>
@@ -153,17 +144,6 @@ class FormDialog extends React.Component {
               <TextField
                 autoFocus
                 fullWidth
-                id="password"
-                label="Mot de passe"
-                margin="dense"
-                onChange={(event) => this.userFieldChange('password', event.target.value)}
-                type="text"
-                value={this.state.user.password}
-              />
-
-              <TextField
-                autoFocus
-                fullWidth
                 id="email"
                 label="Em@il"
                 margin="dense"
@@ -171,22 +151,16 @@ class FormDialog extends React.Component {
                 type="text"
                 value={this.state.user.email}
               />
-              <FormControl className={classes.formControl}>
-                <InputLabel>Rôle</InputLabel>
-                <NativeSelect
-                  input={
-                    <Input
-                      id="native-helper"
-                      name="role"
-                    />}
-                  onChange={(event) => this.userFieldChange('Role_utilisateur_id', event.target.value)}
-                >
-                  <option value="" />
-                  <option value={this.state.user.Role_utilisateur_id[1]}>RC</option>
-                  <option value={this.state.user.Role_utilisateur_id[2]}>RA</option>
-                  <option value={this.state.user.Role_utilisateur_id[3]}>Gestionnaire</option>
-                </NativeSelect>
-              </FormControl>
+              <TextField
+                autoFocus
+                fullWidth
+                id="role"
+                label="RA,RC,Gestionnaire"
+                margin="dense"
+                onChange={(event) => this.userFieldChange('role', event.target.value)}
+                type="text"
+                value={this.state.user.role}
+              />
             </DialogContent>
             <DialogActions>
               <Button
@@ -197,7 +171,7 @@ class FormDialog extends React.Component {
               </Button>
               <Button
                 color="primary"
-                onClick={this.AddUser}
+                onClick={this.writeUserData}
               >
               Ajouter
               </Button>

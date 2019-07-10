@@ -7,8 +7,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 // Material components
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Typography from '@material-ui/core/Typography';
 
 // Shared layouts
 import DashboardLayout from 'layouts/Dashboard';
@@ -100,8 +98,7 @@ class UserList extends Component {
 
   renderProducts() {
     
-    const { classes } = this.props;
-    const { isLoading, products, error } = this.state;
+    const { products } = this.state;
 
     const path_slice = this.props.location.pathname.split('/');
     const lastSegment = path_slice.pop() || path_slice.pop();
@@ -120,8 +117,8 @@ class UserList extends Component {
 
     return (
       <BasketTable
-        onSelect={this.handleSelect}
         data={this.state.data}
+        onSelect={this.handleSelect}
       />
      
     );
@@ -138,18 +135,22 @@ class UserList extends Component {
           <BasketToolbar selectedProducts={selectedProducts} />
           
           <div className={classes.containerBar}>
-          <SearchInput
-          className={classes.searchInput}
-          onChange={this.updateSearch.bind(this)}
-          placeholder="Rechercher un produit"
-          value={this.state.search}
-          />
+            <SearchInput
+              className={classes.searchInput}
+              onChange={this.updateSearch.bind(this)}
+              placeholder="Rechercher un produit"
+              value={this.state.search}
+            />
 
 
-          <Button variant="contained" color="primary" className={classes.button}>
+            <Button
+              className={classes.button}
+              color="primary"
+              variant="contained"
+            >
             Valider
-          </Button>
-</div>
+            </Button>
+          </div>
 
           <div className={classes.content}>{this.renderProducts()}</div>
         </div>
