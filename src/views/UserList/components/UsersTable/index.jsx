@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -11,7 +12,6 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 import { withStyles } from '@material-ui/core/styles';
 
 // Material components
-import Checkbox from '@material-ui/core/Checkbox';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -20,9 +20,10 @@ import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import TablePagination from '@material-ui/core/TablePagination';
 import SearchInput from 'components/SearchInput';
+import Delete from '@material-ui/icons/DeleteOutline'
 
 // Shared helpers
-// import getInitials from 'helpers/getInitials';
+
 
 // Shared components
 import Portlet from 'components/Portlet';
@@ -33,53 +34,10 @@ import styles from './styles';
 
 class UsersTable extends Component {
   state = {
-    selectedUsers: [],
     rowsPerPage: 100,
     page: 0,
     search:''
   };
-
-  handleSelectAll = event => {
-    const { users, onSelect } = this.props;
-
-    let selectedUsers;
-
-    if (event.target.checked) {
-      selectedUsers = users.map(user => user.id);
-    } else {
-      selectedUsers = [];
-    }
-
-    this.setState({ selectedUsers });
-
-    onSelect(selectedUsers);
-  };
-
-  handleSelectOne = (event, id) => {
-    const { onSelect } = this.props;
-    const { selectedUsers } = this.state;
-
-    const selectedIndex = selectedUsers.indexOf(id);
-    let newSelectedUsers = [];
-
-    if (selectedIndex === -1) {
-      newSelectedUsers = newSelectedUsers.concat(selectedUsers, id);
-    } else if (selectedIndex === 0) {
-      newSelectedUsers = newSelectedUsers.concat(selectedUsers.slice(1));
-    } else if (selectedIndex === selectedUsers.length - 1) {
-      newSelectedUsers = newSelectedUsers.concat(selectedUsers.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelectedUsers = newSelectedUsers.concat(
-        selectedUsers.slice(0, selectedIndex),
-        selectedUsers.slice(selectedIndex + 1)
-      );
-    }
-
-    this.setState({ selectedUsers: newSelectedUsers });
-
-    onSelect(newSelectedUsers);
-  };
-
   handleChangePage = (event, page) => {
     this.setState({ page });
   };
@@ -94,18 +52,14 @@ class UsersTable extends Component {
 
   render() {
     const { classes, className, users } = this.props;
-    const { activeTab, selectedUsers, rowsPerPage, page } = this.state;
-    // console.log(activeTab);
-    
+    const { activeTab,  rowsPerPage, page } = this.state;    
 
     const filteredUser  = this.props.users.filter(
       (user) => {
         return (user.nom.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 )|| user.role.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
       }
     )
-
     const rootClassName = classNames(classes.root, className);
-
     return (
       <div>
         <div className={classes.margin}>
@@ -119,25 +73,16 @@ class UsersTable extends Component {
         <Portlet className={rootClassName}>
           <PortletContent noPadding>
             <PerfectScrollbar>
-            
               <Table>
                 <TableHead>
                   <TableRow>
                     <TableCell align="left">
-                      <Checkbox
-                        checked={selectedUsers.length === users.length}
-                        color="primary"
-                        indeterminate={
-                          selectedUsers.length > 0 &&
-                        selectedUsers.length < users.length
-                        }
-                        onChange={this.handleSelectAll}
-                      />
                     Nom
                     </TableCell>
                     <TableCell align="left">Rôle</TableCell>
                     <TableCell align="left">Email</TableCell>
                     <TableCell align="left">Date d'ajout</TableCell>
+                    <TableCell/>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -159,18 +104,9 @@ class UsersTable extends Component {
                         className={classes.tableRow}
                         hover
                         key={user.id}
-                        selected={selectedUsers.indexOf(user.id) !== -1}
                       >
                         <TableCell className={classes.tableCell}>
                           <div className={classes.tableCellInner}>
-                            <Checkbox
-                              checked={selectedUsers.indexOf(user.id) !== -1}
-                              color="primary"
-                              onChange={event =>
-                                this.handleSelectOne(event, user.id)
-                              }
-                              value="true"
-                            />
                             <Link to="#">
                               <Typography
                                 className={classes.nameText}
@@ -189,6 +125,9 @@ class UsersTable extends Component {
                         </TableCell>
                         <TableCell className={classes.tableCell}>
                           {moment(user.date).format('DD/MM/YYYY')}
+                        </TableCell>
+                        <TableCell>
+                          <Delete/>
                         </TableCell>
                       </TableRow>
                     ))}

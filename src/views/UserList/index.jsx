@@ -97,7 +97,10 @@ class UserList extends Component {
     }
 
     if (users.length === 0) {
-      return <Typography variant="h6">Aucun utilisateur inscrit pour le moment </Typography>;
+      // return <Typography variant="h6">Aucun utilisateur inscrit pour le moment </Typography>;
+      return <div className={classes.progressWrapper}>
+        <CircularProgress />
+      </div>
     }
 
     return (
@@ -111,7 +114,6 @@ class UserList extends Component {
   render() {
     const { classes } = this.props;
     const { selectedUsers } = this.state;
-    console.log(this.state.users)
     return (
       <DashboardLayout title="Utilisateurs">
         <div className={classes.root}>

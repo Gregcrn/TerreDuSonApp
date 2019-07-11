@@ -74,21 +74,17 @@ class FormDialog extends React.Component {
   state = {
     open: false,
     validate: false,
-    id:0,
-    user: [{
-      nom: '',
-      email:'',
-      role:''
-    }
+    user: [
     ]
   }
 
 
-  writeUserData = () => {
+  writeUserData = (id) => {
     Config.database().ref('users').push({
       nom: this.state.user.nom,
       email: this.state.user.email,
-      role: this.state.user.role
+      role: this.state.user.role,
+      id: id
     });
     this.setState({
       validate: !this.state.validate,
