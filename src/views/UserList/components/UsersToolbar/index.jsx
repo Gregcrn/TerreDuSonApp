@@ -20,14 +20,14 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 //Data
-// import AddUser from '../../../../utils/AddUser'
+import AddUser from '../../../../utils/AddUser'
 
 // Component styles
 import styles from './styles';
 import { Slide } from '@material-ui/core';
 
 //Firebase
-import Config from '../../../../config/FirebaseConfig'
+// import Config from '../../../../config/FirebaseConfig'
 
 function Transition(props) {
   return <Slide 
@@ -76,28 +76,42 @@ class AlertValidate extends React.Component {
 class FormDialog extends React.Component {
   state = {
     open: false,
-    validate: false,
-    id:0,
+    validate: null,
     user: {
-      "nom": '',
-      "email": '',
-      "role": ''
+      nom: '',
+      password: '',
+      email: '',
+      Role_utilisateur_id: ''
     }
   }
 
-
-  writeUserData = (id) => {
-    Config.database().ref('users').push({
-      nom: this.state.user.nom,
-      email: this.state.user.email,
-      role: this.state.user.role,
-      id: id
-    });
-    this.setState({
-      validate: !this.state.validate,
-      open: false
-    })
+  AddUser = async () => {
+    try {
+      await AddUser(this.state.user);
+      this.setState({
+        open: false,
+        validate: true,
+      })
+    } catch (error) {
+      this.setState({
+        open: true,
+        validate: false,
+      })
+    }
   }
+
+  // writeUserData = (id) => {
+  //   Config.database().ref('users').push({
+  //     nom: this.state.user.nom,
+  //     email: this.state.user.email,
+  //     role: this.state.user.role,
+  //     id: id
+  //   });
+  //   this.setState({
+  //     validate: !this.state.validate,
+  //     open: false
+  //   })
+  // }
   
   handleClickOpen = () => {
     this.setState({ open: true }); 
@@ -155,6 +169,16 @@ class FormDialog extends React.Component {
                 type="text"
                 value={this.state.user.email}
               />
+              <TextField
+                autoFocus
+                fullWidth
+                id="password"
+                label="password"
+                margin="dense"
+                onChange={(event) => this.userFieldChange('password', event.target.value)}
+                type="text"
+                value={this.state.user.password}
+              />
               {/* <TextField
                 autoFocus
                 fullWidth
@@ -173,12 +197,12 @@ class FormDialog extends React.Component {
                       id="native-helper"
                       name="role"
                     />}
-                  onChange={(event) => this.userFieldChange('role', event.target.value)}
+                  onChange={(event) => this.userFieldChange('Role_utilisateur_id', event.target.value)}
                 >
                   <option value="" />
-                  <option value={'RC'}>RC</option>
-                  <option value={'RA'}>RA</option>
-                  <option value={'Gestionnaire'}>Gestionnaire</option>
+                  <option value={'1'}>RC</option>
+                  <option value={'2'}>RA</option>
+                  <option value={'3'}>Gestionnaire</option>
                 </NativeSelect>
               </FormControl>
             </DialogContent>
@@ -191,7 +215,7 @@ class FormDialog extends React.Component {
               </Button>
               <Button
                 color="primary"
-                onClick={this.writeUserData}
+                onClick={this.AddUser}
               >
               Ajouter
               </Button>

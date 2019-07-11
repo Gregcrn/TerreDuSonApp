@@ -1,5 +1,9 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
+
+//axios
+import axios from 'axios'
+
 // Externals
 import PropTypes from 'prop-types';
 
@@ -13,6 +17,9 @@ import Typography from '@material-ui/core/Typography';
 // Shared layouts
 import DashboardLayout from 'layouts/Dashboard';
 
+// Shared services
+import {getUsers} from 'services/user/'
+
 // Custom components
 import UsersToolbar from './components/UsersToolbar';
 import UsersTable from './components/UsersTable';
@@ -25,7 +32,6 @@ import config from '../../config/FirebaseConfig'
 import { O2A } from 'object-to-array-convert';
 
 class UserList extends Component {
-
   signal = true;
   state = {
     isLoading: true,
@@ -35,26 +41,29 @@ class UserList extends Component {
     error: null,
   };
 
-  componentWillMount(){
-    this.getUsers()
-  }
+  // componentWillMount(){
+  //   this.getUsers()
+  // }
 
-  getUserData = () => {
-    const ref = config.database().ref('users')
-    ref.on('value', snapshot => {
-      this.setState({
-        users:  O2A(snapshot),
-      })
-    })
-  }
+  // getUserData = () => {
+  //   const ref = config.database().ref('users')
+  //   ref.on('value', snapshot => {
+  //     this.setState({
+  //       users:  O2A(snapshot),
+  //     })
+  //   })
+  // }
 
   async getUsers() {
     try {
       this.setState({ isLoading: false });
-      await this.getUserData();
+      const { limit } = this.state;
+      const { users } = await getUsers(limit);
+      // await this.getUserData();
       if (this.signal) {
         this.setState({
           isLoading: false,
+          users
         });
       }
     } catch (error) {
@@ -69,7 +78,8 @@ class UserList extends Component {
 
   componentDidMount() {
     this.signal = true;
-    this.setState({isLoading:true})
+    this.getUsers();
+    // this.setState({isLoading:true})
   }
 
   componentWillUnmount() {
