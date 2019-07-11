@@ -15,7 +15,10 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-
+import NativeSelect from '@material-ui/core/NativeSelect';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
 //Data
 // import AddUser from '../../../../utils/AddUser'
 
@@ -74,8 +77,12 @@ class FormDialog extends React.Component {
   state = {
     open: false,
     validate: false,
-    user: [
-    ]
+    id:0,
+    user: {
+      "nom": '',
+      "email": '',
+      "role": ''
+    }
   }
 
 
@@ -107,6 +114,8 @@ class FormDialog extends React.Component {
   }
 
   render() {
+    const { classes } = this.props;
+    console.log(this.state.user)
     return (
       <React.Fragment>
         <div>
@@ -147,7 +156,7 @@ class FormDialog extends React.Component {
                 type="text"
                 value={this.state.user.email}
               />
-              <TextField
+              {/* <TextField
                 autoFocus
                 fullWidth
                 id="role"
@@ -156,7 +165,23 @@ class FormDialog extends React.Component {
                 onChange={(event) => this.userFieldChange('role', event.target.value)}
                 type="text"
                 value={this.state.user.role}
-              />
+              /> */}
+              <FormControl className={classes.formControl}>
+                <InputLabel>Rôle</InputLabel>
+                <NativeSelect
+                  input={
+                    <Input
+                      id="native-helper"
+                      name="role"
+                    />}
+                  onChange={(event) => this.userFieldChange('role', event.target.value)}
+                >
+                  <option value="" />
+                  <option value={'RC'}>RC</option>
+                  <option value={'RA'}>RA</option>
+                  <option value={'Gestionnaire'}>Gestionnaire</option>
+                </NativeSelect>
+              </FormControl>
             </DialogContent>
             <DialogActions>
               <Button
