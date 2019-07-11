@@ -115,7 +115,6 @@ class FormDialog extends React.Component {
 
   render() {
     const { classes } = this.props;
-    console.log(this.state.user)
     return (
       <React.Fragment>
         <div>

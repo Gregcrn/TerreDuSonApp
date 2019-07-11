@@ -27,5 +27,25 @@ export default theme => ({
   searchInput: {
     marginBottom: '2rem',
     width: '30%'
+  },
+  deleteUser: {
+    width: '1.8rem',
+    height: '1.8rem',
+    
+    '&:hover': {
+    backgroundColor:'#FABDCA',
+    borderRadius: '50%',
+}
+  },
+
+  editUser: {
+    marginRight:'2rem',
+    width: '1.8rem',
+    height: '1.8rem',
+    '&:hover': {
+      backgroundColor:'#C6C6C6',
+      borderRadius:'50%',
+      
+    }
   }
 });
