@@ -39,8 +39,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 
 // Shared components
-import Portlet from 'components/Portlet';
-import PortletContent from 'components/PortletContent';
 
 // Component styles
 import styles from './styles';
@@ -154,27 +152,30 @@ class UsersTable extends Component {
                         </TableCell>
                         <TableCell>
                           <Edit className={classes.editUser}/>
-                          <Delete className={classes.deleteUser}
-                          onClick={this.handleClickOpen}
+                          <Delete
+                            className={classes.deleteUser}
+                            onClick={this.handleClickOpen}
                           />
-                        <Dialog
-                        onClose={this.handleClose}
-                        aria-labelledby="customized-dialog-title"
-                        open={this.state.open}
-                        >
-                        <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
+                          <Dialog
+                            aria-labelledby="customized-dialog-title"
+                            onClose={this.handleClose}
+                            open={this.state.open}
+                          >
+                            <DialogTitle id="customized-dialog-title"
+                              onClose={this.handleClose}>
                             Supprimmer un utilisateur
-                          </DialogTitle>
-                          <Typography gutterBottom>
+                            </DialogTitle>
+                            <Typography gutterBottom>
                           Souhaitez-vous vraiment supprimer cet utilisateur ?
-                          </Typography>
+                            </Typography>
 
-                          <DialogActions>
-                          <Button onClick={this.handleClose} color="primary">
+                            <DialogActions>
+                              <Button onClick={this.handleClose}
+                                color="primary">
                           Oui
-                          </Button>
-                          </DialogActions>
-                        </Dialog>
+                              </Button>
+                            </DialogActions>
+                          </Dialog>
                         </TableCell>
                       </TableRow>
                     ))}
