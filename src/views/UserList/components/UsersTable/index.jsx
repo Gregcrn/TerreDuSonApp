@@ -20,8 +20,14 @@ import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import TablePagination from '@material-ui/core/TablePagination';
 import SearchInput from 'components/SearchInput';
-import Delete from '@material-ui/icons/DeleteOutline';
+
+// Icons
+import Delete from '@material-ui/icons/DeleteOutline'
 import Edit from '@material-ui/icons/EditOutlined';
+
+// Shared components
+import Portlet from 'components/Portlet';
+import PortletContent from 'components/PortletContent';
 
 //Form dialog
 import Dialog from '@material-ui/core/Dialog';
@@ -29,15 +35,11 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-// Shared helpers
-
-
-// Shared components
-import Portlet from 'components/Portlet';
-import PortletContent from 'components/PortletContent';
 
 // Component styles
 import styles from './styles';
+
+
 
 class UsersTable extends Component {
   state = {
@@ -109,9 +111,11 @@ class UsersTable extends Component {
                       if (activeTab === 1) {
                         return !user.returning;
                       }
+
                       if (activeTab === 2) {
                         return user.returning;
                       }
+
                       return user;
                     })
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -144,27 +148,33 @@ class UsersTable extends Component {
                         </TableCell>
                         <TableCell>
                           <Edit className={classes.editUser}/>
-                          <Delete className={classes.deleteUser}
-                          onClick={this.handleClickOpen}
+                          <Delete
+                            className={classes.deleteUser}
+                            onClick={this.handleClickOpen}
                           />
-                        <Dialog
-                        onClose={this.handleClose}
-                        aria-labelledby="customized-dialog-title"
-                        open={this.state.open}
-                        >
-                        <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
+                          <Dialog
+                            aria-labelledby="customized-dialog-title"
+                            onClose={this.handleClose}
+                            open={this.state.open}
+                          >
+                            <DialogTitle
+                              id="customized-dialog-title"
+                              onClose={this.handleClose}
+                            >
                             Supprimmer un utilisateur
-                          </DialogTitle>
-                          <Typography gutterBottom>
+                            </DialogTitle>
+                            <Typography gutterBottom>
                           Souhaitez-vous vraiment supprimer cet utilisateur ?
-                          </Typography>
+                            </Typography>
 
-                          <DialogActions>
-                          <Button onClick={this.handleClose} color="primary">
+                            <DialogActions>
+                              <Button
+                                color="primary"
+                                onClick={this.handleClose}>
                           Oui
-                          </Button>
-                          </DialogActions>
-                        </Dialog>
+                              </Button>
+                            </DialogActions>
+                          </Dialog>
                         </TableCell>
                       </TableRow>
                     ))}

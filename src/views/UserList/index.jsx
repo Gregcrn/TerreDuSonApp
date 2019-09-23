@@ -1,9 +1,6 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
 
-//axios
-import axios from 'axios'
-
 // Externals
 import PropTypes from 'prop-types';
 
@@ -27,9 +24,6 @@ import UsersTable from './components/UsersTable';
 // Component styles
 import styles from './style';
 
-// Config Firebase
-import config from '../../config/FirebaseConfig'
-import { O2A } from 'object-to-array-convert';
 
 class UserList extends Component {
   signal = true;
@@ -41,25 +35,11 @@ class UserList extends Component {
     error: null,
   };
 
-  // componentWillMount(){
-  //   this.getUsers()
-  // }
-
-  // getUserData = () => {
-  //   const ref = config.database().ref('users')
-  //   ref.on('value', snapshot => {
-  //     this.setState({
-  //       users:  O2A(snapshot),
-  //     })
-  //   })
-  // }
-
   async getUsers() {
     try {
-      this.setState({ isLoading: false });
+      this.setState({ isLoading: true });
       const { limit } = this.state;
       const { users } = await getUsers(limit);
-      // await this.getUserData();
       if (this.signal) {
         this.setState({
           isLoading: false,
@@ -79,7 +59,6 @@ class UserList extends Component {
   componentDidMount() {
     this.signal = true;
     this.getUsers();
-    // this.setState({isLoading:true})
   }
 
   componentWillUnmount() {
@@ -107,9 +86,8 @@ class UserList extends Component {
     }
 
     if (users.length === 0) {
-      // return <Typography variant="h6">Aucun utilisateur inscrit pour le moment </Typography>;
       return <div className={classes.progressWrapper}>
-        <CircularProgress />
+        <Typography variant="h6">Aucun utilisateur inscrit pour le moment </Typography>;
       </div>
     }
 
